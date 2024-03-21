@@ -1,0 +1,99 @@
+/* document style */
+body {
+
+}
+
+/* header style */
+header {
+
+}
+
+/* footer style */
+footer {
+
+}
+
+/* primary heading style */
+h1 {
+
+}
+
+/* secondary heading style */
+h2 {
+
+}
+
+/* tertiary heading style */
+h3 {
+
+}
+
+/* paragraph style */
+p {
+
+}
+
+/* button (normal) style */
+button {
+
+}
+
+/* button mouse over style */
+button:hover {
+
+}
+
+/* disabled button style */
+button:disabled {
+
+}
+
+/* active button style (clicked) */
+button:active {
+
+}
+
+/* input (text, number) style */
+input[type=text][type=number] {
+
+}
+
+/* search style */
+input[type=search] {
+
+}
+
+/* checkbox (default) style */
+input[type=checkbox] {
+
+}
+
+/* checkbox (checked, clicked) style */
+input[type=checkbox]:checked {
+
+}
+
+/* radio button (default) style */
+input[type=radio] {
+
+}
+
+/* radio button (checked, clicked) style */
+input[type=radio]:checked {
+
+}
+
+/* dropdown menu style */
+select {
+
+}
+
+/* dropdown option style */
+select > option {
+
+}
+
+/* textarea style */
+textarea {
+
+}
