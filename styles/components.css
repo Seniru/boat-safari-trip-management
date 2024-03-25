@@ -1,6 +1,6 @@
 /* document style */
 body {
-
+	background-color: #013845;
 }
 
 /* header style */
@@ -54,14 +54,47 @@ button:active {
 }
 
 /* input (text, number) style */
-input[type=text][type=number] {
+input[type=text], input[type=number] {
+	background-color: #FFFFFF;
+	border-radius: 3px;
+	padding: 8px;
+	border: 0;
+	outline: none;
+	border-bottom: 2px solid invisible;
+	font-family: "Poppins", sans-serif;
+  	font-weight: 300;
+  	font-style: normal
+}
 
+
+input[type=text]:focus, input[type=number]:focus {
+	border-bottom: 2px solid #FDF526;
 }
 
 /* search style */
 input[type=search] {
-
+	background-color: white;
+	outline: none;
+	border: none;
+	border-radius: 11px;
+	font-family: "Poppins", sans-serif;
+  	font-weight: 300;
+  	font-style: normal;
+	padding: 4px 10px 4px 6px;
 }
+
+input[type=search]:active {
+	outline: none;
+}
+
+::placeholder {
+	color: red;
+	opacity: 1;
+  }
+  
+  ::-ms-input-placeholder {
+	color: red;
+  }
 
 /* checkbox (default) style */
 input[type=checkbox] {
@@ -85,15 +118,27 @@ input[type=radio]:checked {
 
 /* dropdown menu style */
 select {
-
+	background-color: white;
+	border-radius: 11px;
+	padding: 4px;
+	padding-right: 10px;
+	font-family: "Poppins", sans-serif;
+  	font-weight: 300;
+  	font-style: normal;
+	outline: none;
 }
 
-/* dropdown option style */
+/* dropdown option style
+	TODO: fix this
+*/
 select > option {
-
+	background-color: #A4C1CB;
+	border: 0;
+	border-bottom: 1px solid #707070;
 }
 
 /* textarea style */
 textarea {
 
 }
+
