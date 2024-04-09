@@ -7,16 +7,65 @@
 body {
 	background-color: #013845;
 	font-family: "Poppins", sans-serif;
+	margin: 0;
 }
 
 
 /* header style */
 header {
+	position: sticky;
+	background-color: #606060;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 130px;
+}
+
+header > div, header > nav {
+	display: table-cell;
+}
+
+header > #header-logo {
+
+}
+
+header > nav#header-nav {
+
+}
+
+header > #header-actions {
+
+}
+
+header > #header-notifications {
+
+}
+
+header > #header-user-profile {
 
 }
 
 /* footer style */
 footer {
+	margin-top: 10px;
+	padding: 15px;
+	background-color: #606060;
+}
+
+footer > div {
+	display: table-cell;
+	width: 33%;
+}
+
+footer > #footer-links {
+
+}
+
+footer > #footer-socials {
+	text-align: center;
+}
+
+footer > #footer-newsletter {
 
 }
 
@@ -70,7 +119,9 @@ button.special {
 }
 
 /* input (text, number) style */
-input[type=text], input[type=number] {
+input[type=text],
+input[type=number],
+input[type=email] {
 	background-color: #FFFFFF;
 	border-radius: 3px;
 	padding: 8px;
@@ -82,7 +133,9 @@ input[type=text], input[type=number] {
   	font-style: normal
 }
 
-input[type=text]:focus, input[type=number]:focus {
+input[type=text]:focus,
+input[type=number]:focus,
+input[type=email]:focus {
 	border-bottom: 2px solid #FDF526;
 }
 
@@ -178,4 +231,12 @@ textarea {
 	border-radius: 5px;
 	box-shadow: 0px 4px 6px 0px rgba(0,0,0,.25);
 	padding: 15px;
+}
+
+.profile-image {
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	border: 1px solid black;
+	padding: 3px;
 }
