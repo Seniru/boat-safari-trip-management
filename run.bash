@@ -13,7 +13,7 @@ if [ -z $1 ] || [ $1 = "start" ]; then
     sudo xampp startapache
     sudo xampp startmysql
 
-    echo "Live on http://localhost:80/boat-safari-trip-management/"
+    echo "Live on http://localhost/boat-safari-trip-management/"
 
 elif [ $1 = "stop" ]; then
     sudo xampp stop
