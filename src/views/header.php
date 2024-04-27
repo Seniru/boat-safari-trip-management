@@ -4,9 +4,9 @@
 	</div>
 	<nav id="header-nav">
 		<ul>
-			<li><a href="/">HOME</a></li>
-			<li><a href="/">FAQ</a></li>
-			<li><a href="/">More v</a></li>
+			<li><a class="navbar-link" href="/">HOME</a></li>
+			<li><a class="navbar-link" href="/">FAQ</a></li>
+			<li><a class="navbar-link" href="/">MORE v</a></li>
 		</ul>
 	</nav>
 	<div id="header-actions">
@@ -14,11 +14,11 @@
 	</div>
 	<div id="header-notifications">
 		<input type="search" placeholder="Search">
-		<i class="fa-solid fa-bell"></i>
+		<i class="fa-solid fa-bell" style="color: white; margin-left: 15px;"></i>
 	</div>
 	<div id="header-user-profile">
 		User name v <br>
-		<img src="images/user-solid.svg" class="profile-image"><br>
+		<img src="../images/user-solid.svg" class="profile-image">
 		<button class="special">Logout</button>
 	</div>
 </header>

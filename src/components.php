@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -7,7 +8,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 		<!--component styles-->
-		<link rel="stylesheet" href="styles/components.css">
+		<link rel="stylesheet" href="../styles/components.css">
 		<!--font awesomem-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
 		<title>Website components</title>
@@ -50,7 +51,6 @@
 			<textarea cols="50" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, iure. Nemo commodi sunt laudantium, distinctio accusamus provident omnis amet voluptatibus incidunt, pariatur, recusandae obcaecati eum est exercitationem. Quis, laboriosam illo!</textarea>
 		</div>
 
-        <?php require("./views/footer.php") ?>
-
+		<?php require("./views/footer.php") ?>
 	</body>
 </html>
