@@ -1,0 +1,299 @@
+* {
+	transition-duration: 6ms;
+	transition-timing-function: linear;
+}
+
+/* document style */
+body {
+	background-color: #013845;
+	font-family: "Poppins", sans-serif;
+	margin: 0;
+}
+
+
+/* header style */
+header {
+	position: sticky;
+	background-color: #000000;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 130px;
+}
+
+header > div, header > nav {
+	display: inline-block;
+}
+
+header > #header-logo {
+	width: 130px;
+	height: 130px;
+
+}
+
+header > nav#header-nav {
+	color: #FFFFFF;
+	font-family: "Poppins", sans-serif;
+    
+
+}
+
+header > nav#header-nav > ul {
+	list-style-type: none;
+}
+ 
+header > nav#header-nav > ul > li {
+	display: inline;
+	margin-left: 9px;
+
+}
+
+.navbar-link {
+	text-decoration: none;
+	color: #FFFFFF;
+
+}
+
+.navbar-link:active, .navbar-link:hover, .navbar-link:visited {
+	color: #FFFFFF;
+}
+
+.navbar-link:hover {
+	text-decoration: underline;
+}
+
+header > #header-actions {
+	padding-left: 70px;
+	width: 20%;
+
+}
+
+header > #header-notifications {
+     
+
+
+}
+
+header > #header-user-profile {
+    color: #FFFFFF;
+	right: 5px;
+	position: absolute;
+	width: 8%;
+	text-align: center;
+
+}
+
+header > #header-user-profile > button{
+	color: #000000;
+	background-color: #FFFFFF;
+	border-radius: 0;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-top: 15px;
+
+}
+
+header > #header-user-profile > .profile-image {
+
+	border-color: #FFFFFF;
+	margin: auto;
+	display: block;
+}
+
+/* footer style */
+footer {
+	margin-top: 10px;
+	padding: 15px;
+	background-color: #606060;
+}
+
+footer > div {
+	display: table-cell;
+	width: 33%;
+}
+
+footer > #footer-links {
+
+}
+
+footer > #footer-socials {
+	text-align: center;
+}
+
+footer > #footer-newsletter {
+
+}
+
+/* primary heading style */
+h1 {
+
+}
+
+/* secondary heading style */
+h2 {
+
+}
+
+/* tertiary heading style */
+h3 {
+
+}
+
+/* paragraph style */
+p {
+
+}
+
+/* button (normal) style */
+button {
+    background-color: #117D7C;
+    border-radius: 39px;
+    border: 0;
+    padding: 10px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: white;
+}
+
+/* button mouse over style */
+button:hover {
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,.25);
+}
+
+
+/* active button style (clicked) */
+button:active {
+   background-color: #0D5D5D;
+   box-shadow: none;
+
+}
+
+button.special {
+    
+}
+
+/* input (text, number) style */
+input[type=text],
+input[type=number],
+input[type=email] {
+	background-color: #FFFFFF;
+	border-radius: 3px;
+	padding: 8px;
+	border: 0;
+	outline: none;
+	border-bottom: 2px solid #00000000;
+	font-family: "Poppins", sans-serif;
+  	font-weight: 300;
+  	font-style: normal
+}
+
+input[type=text]:focus,
+input[type=number]:focus,
+input[type=email]:focus {
+	border-bottom: 2px solid #FDF526;
+}
+
+/* search style */
+input[type=search] {
+	background-color: white;
+	outline: none;
+	border: none;
+	border-radius: 11px;
+	font-family: "Poppins", sans-serif;
+  	font-weight: 300;
+  	font-style: normal;
+	padding: 6px 10px 6px 20px;
+	background-image: url("../images/magnifying-glass-solid.svg");
+	background-repeat: no-repeat;
+	background-position: 95% center;
+}
+
+input[type=search]:active {
+	outline: none;
+	appearance: none;
+
+}
+
+input[type=search]::placeholder {
+	color: #606060;
+}
+  
+input[type=search]::-ms-input-placeholder {
+	color: #606060;
+}
+
+/* Remove X icon credits: https://medium.com/@rion.mrk/how-to-remove-x-icon-from-search-input-field-or-input-type-search-db3c808405fb */
+/* clears the ‘X’ from Internet Explorer */
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+
+/* checkbox (default) style */
+input[type=checkbox] {
+
+}
+
+/* checkbox (checked, clicked) style */
+input[type=checkbox]:checked {
+
+}
+
+/* radio button (default) style */
+input[type=radio] {
+
+}
+
+/* radio button (checked, clicked) style */
+input[type=radio]:checked {
+
+}
+
+/* dropdown menu style */
+select {
+	background-color: white;
+	border-radius: 11px;
+	padding: 6px 60px 6px 20px;
+	font-family: "Poppins", sans-serif;
+  	font-weight: 300;
+  	font-style: normal;
+	outline: none;
+	appearance: none;
+	background-image: url("../images/angle-down-solid.svg");
+	background-repeat: no-repeat;
+	background-position: 95% center;
+	transition-duration: 0.4s;
+	transition-timing-function: ease-in-out;
+}
+
+select:active {
+	background-image: url("../images/angle-up-solid.svg");
+}
+
+
+/* textarea style */
+textarea {
+	padding: 10px;
+}
+
+.container {
+	background-color: #839790;
+	border-radius: 5px;
+	box-shadow: 0px 4px 6px 0px rgba(0,0,0,.25);
+	padding: 15px;
+}
+
+.profile-image {
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	border: 1px solid black;
+	padding: 3px;
+}
