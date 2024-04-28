@@ -2,8 +2,8 @@ const DIRECTION_LEFT = 1
 const DIRECTION_RIGHT = -1
 
 document.addEventListener("DOMContentLoaded", function() {
-
     let slideshowContainers = document.getElementsByClassName("slideshow")
+    console.log(slideshowContainers)
     if (slideshowContainers.length == 0) return
 
     for (let container of slideshowContainers) {
@@ -26,8 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let i = 0; i < slides.length; i++) {
             let circle = document.createElement("button")
             circle.classList.add("slide-indicator")
-            // temporary
-            circle.innerText = i + 1
             if (i == 0) circle.classList.add("current-slide-indicator")
 
             circle.addEventListener("click", function() {
@@ -38,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         displaySlideIndicators(document.getElementsByClassName("slide-indicator"), 0)
-
+        changeSlide(container, slides, 0)
     }
 
 })
