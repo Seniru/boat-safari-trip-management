@@ -1,0 +1,92 @@
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.content {
+    margin: 20px;
+}
+
+#section1 > .container {
+    width: 21%;
+    display: inline-grid;
+    height: 244px;
+    margin: 5px 5%;
+    position: relative;
+}
+
+#section1 > .container > h3 {
+    text-align: center;
+}
+
+#section2 {
+    background-color: #333;
+    padding: 20px 6%;
+    height: calc(100vh - 400px - 20vh);
+}
+
+#section2 > .container {
+    height: 80%;
+    width: 97%;
+}
+
+#section2 > .container > h2 {
+    top: 30%;
+    text-align: center;
+    position: relative;
+}
+
+#section3 > .container {
+    width: 21%;
+    display: inline-grid;
+    height: 260px;
+    margin: 5px 5%;
+    position: relative;
+}
+
+#section4 {
+    background-color: #333;
+    position: relative;
+}
+
+#section4 > h2 {
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+#revenue-details {
+    margin: 10px 20px;
+    width: 30%;
+    position: relative;
+    left: 5%;
+}
+
+#expenses {
+    position: relative;
+    left: 20px;
+}
+
+.view-button {
+    width: 70px;
+    height: 35px;
+    bottom: 10px;
+    left: 10px;
+    position: absolute;
+}
+
+.money {
+    position: absolute;
+    right: 40px;
+    font-weight: 200;
+}
+
+#expenses-chart {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    bottom: 10px;
+    right: 10%;
+    padding-bottom: 15px;
+}
