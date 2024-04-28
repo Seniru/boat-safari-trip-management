@@ -1,0 +1,103 @@
+form {
+    background-color: #333;
+    padding: 20px;
+    color: white;
+    position: relative;
+}
+
+
+tr {
+    vertical-align: top;
+}
+
+th, td {
+    width: 20%;
+}
+
+td > input, td > select {
+    width: 90%;
+}
+
+td > select {
+    height: 40px;
+}
+
+input[type=submit] {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+#packages {
+    margin: 10px;
+}
+
+#packages > .container {
+    width: 30%;
+    margin: 0.5%;
+    display: inline-block;
+    position: relative;
+    height: 350px;
+    vertical-align: top;
+    margin-bottom: 6%;
+}
+
+#packages > .container > button {
+    position: absolute;
+    top: 105%;
+    margin: auto;
+    left: 45%;
+    display: block;
+}
+
+.image-container {
+    display: inline-block;
+    position: absolute;
+    width: 50%;
+    height: 90%;
+}
+
+.image-container > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+}
+
+.package-details {
+    display: inline-block;
+    width: 35%;
+    left: 60%;
+    height: 100%;
+    position: relative;
+}
+
+.price {
+    bottom: 5px;
+    position: absolute;
+}
+
+.money {
+    right: unset;
+    margin-left: 5px;
+}
+
+#trip-details-container > .container {
+    position: relative;
+}
+
+#trip-details {
+    width: 60%;
+    height: 160px;
+    margin: auto;
+}
+
+#trip-details > .image-container {
+    width: 150px;
+    height: 150px;
+}
+
+#trip-info {
+    display: inline-block;
+    position: absolute;
+    left: 200px;
+}
