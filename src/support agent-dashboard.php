@@ -13,19 +13,68 @@
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
         <title>Document</title>
 		<style>
-			.container {
-				margin: 20px;
-			}
+			
 		</style>
     </head>
     <body>
         <?php require("./views/header.php") ?>
 
         <div class="container">
-        <i class="fa-solid fa-envelope" style="font-size: 50px;"> </i>
+        <i class="fa-solid fa-envelope" style="font-size: 40px;"> </i>
         <h2>Ticket #01</h2>
-        <i class="fa-solid fa-user"style="font-size: 25px;"></i>
-        <div class="User">User Name</div>
+        <span class="status">
+            <i class="fa-solid fa-circle"></i>
+            <span class="status-details">Pending</span>
+        </span>
+        <br><br>
+        <div class="userinfo">
+		<img src="../images/user-solid.svg" class="profile-image">
+        <div class="user">User Name</div>
+        </div>
+        <span class="actions">
+            <i class="fa-solid fa-reply"></i>
+            Reply
+            <i class="fa-solid fa-rectangle-xmark"></i>
+            close
+        </span>
+        </div>
+        <div class="container">
+        <i class="fa-solid fa-envelope" style="font-size: 40px;"> </i>
+        <h2>Ticket #02</h2>
+        <span class="status">
+            <i class="fa-solid fa-circle"style="color:green;"></i>
+            <span class="status-details">Pending</span>
+        </span>        
+        <br><br>
+        <div class="userinfo">
+		<img src="../images/user-solid.svg" class="profile-image">
+        <div class="user">User Name</div>
+        </div>
+        <span class="actions">
+            <i class="fa-solid fa-reply"></i>
+            Reply
+            <i class="fa-solid fa-rectangle-xmark"></i>
+            close
+        </span>
+        </div>
+        <div class="container">
+        <i class="fa-solid fa-envelope" style="font-size: 40px;"> </i>
+        <h2>Ticket #03</h2>
+        <span class="status">
+            <i class="fa-solid fa-circle"></i>
+            <span class="status-details">Closed</span>
+        </span>
+        <br><br>
+        <div class="userinfo">
+		<img src="../images/user-solid.svg" class="profile-image">
+        <div class="user">User Name</div>
+        </div>
+        <span class="actions">
+            <i class="fa-solid fa-reply"></i>
+            Reply
+            <i class="fa-solid fa-rectangle-xmark"></i>
+            close
+        </span>
         </div>
 
         <?php require("./views/footer.php") ?>
