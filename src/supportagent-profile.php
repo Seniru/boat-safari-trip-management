@@ -14,19 +14,33 @@
         <title>Document</title>
         <style>
             .profilepicture{
-                width:100px;
-                height:50px;
+                width:150px;
+                height:100px;
+            }
+
+            #profile {
+                width: 50%;
+                margin-left: 25%;
+                text-align: center;
             }
         </style>
     </head>
     <body>
         <?php require("./views/header.php") ?>
+        <section id="profile">
+            <h2 style="color: white;">Profile Settings</h2>
+            <div class="container">
+                <img class="profilepicture" src="../images/user-solid.svg">
+                <h3>Name</h3>
+            <h3>Staff Type</h3>
+            <h3>Gender</h3>
+            <h3>Age</h3>
+            <h3 style="display: inline;">Change password</h3>
+            <i class="fa-solid fa-user-pen"></i>     
+            </div>
+            <br><br><br>
+        </section>
         
-        <h2>Profile Settings</h2>
-        <div class="container">
-            <img class="profilepicture" src="../images/user-solid.svg">
-             
-        </div>
 
         <?php require("./views/footer.php") ?>
 
