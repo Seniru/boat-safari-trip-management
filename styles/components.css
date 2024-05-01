@@ -182,7 +182,8 @@ input[type=text],
 input[type=number],
 input[type=email],
 input[type=date],
-input[type=time] {
+input[type=time],
+input[type=password] {
 	background-color: #FFFFFF;
 	border-radius: 3px;
 	padding: 8px;
@@ -198,7 +199,8 @@ input[type=text]:focus,
 input[type=number]:focus,
 input[type=email]:focus,
 input[type=date]:focus,
-input[type=time]:focus {
+input[type=time]:focus,
+input[type=password]:focus {
 	border-bottom: 2px solid #FDF526;
 }
 

@@ -1,8 +1,8 @@
 <footer>
 	<div id="footer-links">
 		<i class="fa-solid fa-phone-volume"></i> Hot-Line <br>
-		<a href="privacy.html">Privacy Policy</a> |
-		<a href="faq.html">FAQ</a>
+		<a href="policy.php">Privacy Policy</a> |
+		<a href="faq.php">FAQ</a>
 	</div>
 	<div id="footer-socials">
 		<i class="fa-brands fa-facebook"></i>
