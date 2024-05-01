@@ -13,7 +13,59 @@
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
         <title>Document</title>
 		<style>
-			
+			.container {
+                margin: 15px;
+                position: relative;
+            }
+
+            span {
+                position: absolute;
+                right: 15px;
+            }
+
+            .status {
+                top: 15px;
+            }
+
+            .status-details {
+                right: 30px;
+            }
+
+            .actions {
+                bottom: 15px;
+            }
+
+            .userinfo {
+                width: 50%;
+                display: inline-block;
+                position: relative;
+                left: -1px;
+            }
+
+            .profile-image {
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .user {
+                display: inline;
+                width: 50px;
+                vertical-align: middle;
+            }
+
+            .fa-envelope {
+                display: inline;
+            }
+
+            h2 {
+                display: inline-block;
+            }
+
+            .fa-rectangle-xmark {
+                margin-left: 10px;
+                color: red;
+            }
+
 		</style>
     </head>
     <body>
@@ -23,7 +75,7 @@
         <i class="fa-solid fa-envelope" style="font-size: 40px;"> </i>
         <h2>Ticket #01</h2>
         <span class="status">
-            <i class="fa-solid fa-circle"></i>
+            <i class="fa-solid fa-circle" style="color:green;"></i>
             <span class="status-details">Pending</span>
         </span>
         <br><br>
@@ -42,7 +94,7 @@
         <i class="fa-solid fa-envelope" style="font-size: 40px;"> </i>
         <h2>Ticket #02</h2>
         <span class="status">
-            <i class="fa-solid fa-circle"style="color:green;"></i>
+            <i class="fa-solid fa-circle" style="color:green;"></i>
             <span class="status-details">Pending</span>
         </span>        
         <br><br>
