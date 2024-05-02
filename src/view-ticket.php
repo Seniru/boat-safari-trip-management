@@ -13,13 +13,23 @@
 		<!--font awesomem-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
         <title>Document</title>
+        <style>
+            h2{
+               color:white;
+               margin-left:20px
+            }
+            .container{
+                margin-left:20px;
+                margin-right:20px
+            }
+            </style>
     </head>
     <body>
         <?php require("./views/header.php") ?>
         
         
         <h2>Ticket #01</h2>
-        <
+        
         <div class="container">
         <h3>Name</h3>
         <h3>Email</h3>
@@ -27,7 +37,7 @@
         <h3>Request/Inquiry Type</h3>
         <h3>Subject</h3>
         <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus similique ut ipsa, assumenda illo porro ipsum maiores quasi nesciunt, dolore sequi aliquid deserunt harum. Veniam incidunt reprehenderit natus eveniet aliquid.</p>
-        </div>
+        </div><br><br>
 
         <?php require("./views/footer.php") ?>
 
