@@ -8,3 +8,5 @@ SLIIT university project featuring a boat safari trip management system
 
 ## Team
 @Seniru Indira D. H. S. P (IT2328452)
+
+[Project board](https://y1s2-062-1.atlassian.net/jira/software/projects/KAN/boards/1/timeline)

@@ -1,6 +1,6 @@
 <header>
 	<div id="header-logo">
-		<img src="/" alt="logo" width="130px" height="130px">
+		<img src="../images/logo.jpeg" alt="logo" width="110px" height="110px">
 	</div>
 	<nav id="header-nav">
 		<ul>
