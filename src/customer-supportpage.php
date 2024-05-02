@@ -20,30 +20,57 @@
             input[type=text] {
                 width: 200px;
             }
+
+            body {
+                background-image: url("../images/boat.jpg");
+                background-size: cover;
+               
+            }
+
+            .container {
+                background-color: #839790a6;
+                width: 70%;
+                position: relative;
+                left: 12.5%;
+            }
+
+            label,h1 {
+                color: white;
+            }
+
+            h1{
+                text-align:center;
+            }
+
+            form{
+                padding-left:80px;
+            }
+
+            
         </style>
     </head>
     <body>
         <?php require("./views/header.php") ?>
         <!-- body content -->
-        <h2>Customer Support Page</h2>
         <div class="container">
+            <h1>Customer Support Page</h1>
             <form>
             <label for="name">Name:</label><br>
-            <input type="text" id="name" Name="name" placeholder="Enter your name"><br>
+            <input type="text" id="name" Name="name" placeholder="Enter your name"><br><br>
             <label for="Email">Email:</label><br>
-            <input type="text" id="Email" name="Email" placeholder="Enter your Email"><br>
+            <input type="text" id="Email" name="Email" placeholder="Enter your Email"><br><br>
             <label for="Contact Number">Contact Number:</label><br>
-            <input type="text" id="Contact Number" name="Contact Number"placeholder="Enter your contact number"><br>
+            <input type="text" id="Contact Number" name="Contact Number"placeholder="Enter your contact number"><br><br>
             <label for="Request/Inquiry Type">Request/Inquiry Type:</label><br>
             <select name="type">
                 <option value="inquiries">Inquiries</option>
                 <option value="complaints">Complaints</option>
             </select>
-            <br>
+            <br><br>
             <label for="Subject">Subject:</label><br>
-            <input type="text" id="Subject" name="Subject"placeholder="Type here"><br>
+            <input type="text" id="Subject" name="Subject"placeholder="Type here"><br><br>
             <label for="Message">Message:</label><br>
-            <textarea name="content" rows="8" cols="100"placeholder="Type here"></textarea><br>
+            <textarea name="content" rows="8" cols="80"placeholder="Type here"></textarea><br>
             <input type="submit" value="Submit">
         </form>
         </div>
