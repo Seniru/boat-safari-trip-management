@@ -1,0 +1,5 @@
+CREATE TABLE TripFacilities(
+  TripID INT NOT NULL,
+  Facility VARCHAR(100) NOT NULL,
+  FOREIGN KEY (TripID) REFERENCES Trip (TripID)
+  );

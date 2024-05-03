@@ -1,5 +1,5 @@
 CREATE TABLE CustomerSupportAgent (
-    StaffID INT,
+    StaffID INT AUTO_INCREMENT,
     Name VARCHAR(15) NOT NULL,
 	Password VARCHAR(15) NOT NULL,
 	Gender VARCHAR(1) NOT NULL,

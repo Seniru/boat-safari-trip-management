@@ -1,4 +1,4 @@
-CREATE TABLE User (
+CREATE TABLE `User` (
     UserID INT AUTO_INCREMENT,
     Gender ENUM("male", "female") NOT NULL,
     Email VARCHAR(75) NOT NULL,
