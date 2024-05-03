@@ -1,3 +1,48 @@
+<?php
+    $restrict_page = "support_agent";
+    
+    require("auth.php");
+
+    $query_params = NULL;
+    parse_str($_SERVER["QUERY_STRING"], $query_params);
+
+    $ticketID = $query_params["TicketID"];
+    $ticket = NULL;
+
+    if (is_null($ticketID) || $ticketID == "") {
+        echo "
+            <script>
+                alert('Invalid ticket!');
+                window.location.href = 'support-agent-dashboard.php';
+            </script>
+        ";
+    }
+    if ($query_params["action"] == "close") {
+        $conn->query("UPDATE Ticket SET Status='Closed' WHERE TicketID=$ticketID");
+        echo "
+                <script>
+                    alert('Ticket closed!');
+                    window.location.href = 'support-agent-dashboard.php';
+                </script>
+            ";
+    } else {
+        $res = $conn->query("SELECT * FROM Ticket t, User u WHERE t.UserID = u.UserID AND TicketID=$ticketID");
+        if ($res->num_rows == 0) {
+            echo "
+                <script>
+                    alert('Ticket not found!');
+                    window.location.href = 'support-agent-dashboard.php';
+                </script>
+            ";
+        } else {
+            $ticket = $res->fetch_assoc();
+        }
+
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,7 +57,7 @@
 		<link rel="stylesheet" href="../styles/components.css">
 		<!--font awesomem-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
-        <title>Document</title>
+        <title>View ticket</title>
         <style>
             h2{
                color:white;
@@ -28,15 +73,19 @@
         <?php require("./views/header.php") ?>
         
         
-        <h2>Ticket #01</h2>
+        <h2>Ticket #<?php echo $ticketID; ?> </h2>
         
         <div class="container">
-        <h3>Name</h3>
-        <h3>Email</h3>
-        <h3>Contact Number</h3>
-        <h3>Request/Inquiry Type</h3>
-        <h3>Subject</h3>
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus similique ut ipsa, assumenda illo porro ipsum maiores quasi nesciunt, dolore sequi aliquid deserunt harum. Veniam incidunt reprehenderit natus eveniet aliquid.</p>
+        <h4>Name</h4>
+        <?php echo $ticket["FirstName"]; ?>
+        <h4>Email</h4>
+        <?php echo $ticket["Email"]; ?>
+        <h4>Contact Number</h4>
+        <?php echo $ticket["PhoneNumber"]; ?>
+        <h4>Request/Inquiry Type</h4>
+        <?php echo $ticket["InquiryType"]; ?>
+        <h1> <?php echo $ticket["Subject"]; ?> </h1>
+        <p> <?php echo $ticket["Message"]; ?> </p>
         </div><br><br>
 
         <?php require("./views/footer.php") ?>

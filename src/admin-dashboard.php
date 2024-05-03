@@ -1,3 +1,12 @@
+<?php
+
+    $restrict_page = "system_admin";
+    
+    require("auth.php");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -79,7 +88,9 @@
                     </div>
                     <div class="container">
                         <h3>Staff / User details</h3>
-                        <button class="view-button">View</button>
+                        <a href="view-accounts.php">
+                            <button class="view-button">View</button>
+                        </a>
                     </div>
                 </section>
             </div>

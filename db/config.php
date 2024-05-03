@@ -3,7 +3,7 @@
     $servername     = "localhost";
     $username       = "root";
     $password       = "";
-    $databasename   = "db";
+    $databasename   = "boat-safari-trip-management-system";
 
     $conn = new mysqli($servername, $username, $password, $databasename);
 

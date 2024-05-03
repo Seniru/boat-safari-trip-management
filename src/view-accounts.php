@@ -1,3 +1,69 @@
+<?php
+    $restrict_page = "system_admin";
+    
+    require("auth.php");
+    
+    $query_params = NULL;
+    parse_str($_SERVER["QUERY_STRING"], $query_params);
+    
+    $type = $query_params["type"];
+    $searchname = $query_params["name"];
+
+    $clean_names = array(
+        "User" => "User",
+        "TripProvider" => "Trip Provider",
+        "CustomerSupportAgent" => "Support Agent"
+    );
+
+    if ($type == "") {
+        $type = "all";
+        $searchname = "";
+    }
+
+    $table = NULL;
+    if ($type == "all") {
+        $table = [ "User", "CustomerSupportAgent", "TripProvider" ];
+    } else {
+        switch ($type) {
+            case "user":
+                $table = "User";
+                break;
+                case "support-agent":
+                $table = "CustomerSupportAgent";
+                break;
+                case "trip-provider":
+                $table = "TripProvider";
+                break;
+            }
+        }
+
+    function print_account_details($table, $searchname) {
+
+        global $conn, $clean_names;
+
+        $query = "SELECT * FROM $table";
+        if (!(is_null($searchname) || $searchname == "")) {    
+            $query .= " WHERE " . ($table == "User" ? "FirstName" : "Name") . " LIKE '%$searchname%'";
+        }
+
+        $res = $conn->query($query);
+        while ($row = $res->fetch_assoc()) {
+            echo "
+                <div class='container'>
+                        <div class='user-details'>" .
+                            ($table == "User" ? $row["FirstName"] : $row["Name"]) . "<br>
+                            <img src='./images/user-solid.svg' class='profile-image'><br>
+                            {$clean_names[$table]}
+                        </div>
+                        <div class='profile-link'>
+                            <a href='/'>View profile</a>
+                        </div>
+                    </div>
+                ";
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -70,168 +136,26 @@
         <?php require("./views/header.php") ?>
         
         <div id="main-container">
-            <div id="filter-options">
-                <input type="search" placeholder="Search staff or user name">
-                <select>
-                    <option>All accounts</option>
-                    <option>Users</option>
-                    <option>Trip providers</option>
-                    <option>Customer support agents</option>
+            <form id="filter-options" method="GET" action=""">
+                <input type="search" name="name" value="<?php echo $_GET["name"]; ?>" placeholder="Search staff or user name">
+                <select name="type" value="user">
+                    <option value="all">All accounts</option>
+                    <option value="user">Users</option>
+                    <option value="trip-provider">Trip providers</option>
+                    <option value="support-agent">Customer support agents</option>
                 </select>
-            </div>
+                <input type="submit" name="submit" value=" Go ">
+            </form>
             <div id="account-view">
-
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="user-details">
-                        User name <br>
-                        <img src="./images/user-solid.svg" class="profile-image"><br>
-                        Type
-                    </div>
-                    <div class="profile-link">
-                        <a href="/">View profile</a>
-                    </div>
-                </div>
-                
+                <?php
+                    if (is_array($table)) {
+                        foreach($table as $t) {
+                            print_account_details($t, $searchname);
+                        }
+                    } else {
+                        print_account_details($table, $searchname);
+                    }
+                ?>                
             </div>
         </div>
         <?php require("./views/footer.php") ?>

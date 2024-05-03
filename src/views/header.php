@@ -1,3 +1,5 @@
+<?php require_once("auth.php"); ?>
+
 <header>
 	<div id="header-logo">
 		<img src="../images/logo.jpeg" alt="logo" width="110px" height="110px">
@@ -17,8 +19,18 @@
 		<i class="fa-solid fa-bell" style="color: white; margin-left: 15px;"></i>
 	</div>
 	<div id="header-user-profile">
-		User name v <br>
-		<img src="../images/user-solid.svg" class="profile-image">
-		<button class="special">Logout</button>
+		<?php
+			if ($loggedin) {
+				echo "$username v <br>
+				<img src='../images/user-solid.svg' class='profile-image'>
+				<a href='logout.php'><button class='special'>Logout</button></a>";
+			} else {
+				echo "
+					<br>
+					<a href='login.php'><button class='special'>Login</button></a>
+					<a href='signup.php'><button class='special'>Sign up</button></a>
+				";
+			}
+ 		?>
 	</div>
 </header>

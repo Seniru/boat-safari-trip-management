@@ -1,3 +1,39 @@
+<?php
+
+    require("auth.php");
+
+    $query_params = NULL;
+    parse_str($_SERVER["QUERY_STRING"], $query_params);
+
+    $profile_name = $query_params["name"];
+    $gender = NULL;
+    $age = NULL;
+
+    // query parameter name is not empty
+    if (!(is_null($profile_name) || $profile_name == "")) {
+        // search for the user
+        $res = $conn->query("SELECT * FROM CustomerSupportAgent WHERE Name='$profile_name';");
+
+        if ($res->num_rows == 0) {
+            echo "<script>
+                alert('Profile not found!');
+                window.location.href='homepage.php';
+            </script>";
+        } else {
+            $row = $res->fetch_assoc();
+            $gender = $row["Gender"];
+            $age = $row["DateOfBirth"];
+        }
+
+    } else {
+        if ($role != "support-agent") {
+            header("Location: homepage.php");
+        }
+        // displaying own profile
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,12 +68,12 @@
             <h2 style="color: white;">Profile Settings</h2>
             <div class="container">
                 <img class="profilepicture" src="../images/user-solid.svg">
-                <h3>Name</h3>
-            <h3>Staff Type</h3>
-            <h3>Gender</h3>
-            <h3>Age</h3>
-            <h3 style="display: inline;">Change password</h3>
-            <i class="fa-solid fa-user-pen"></i>     
+                <h3><?php echo $profile_name; ?></h3>
+                <h3>Customer Support Agent</h3>
+                <h3><?php echo $gender == "M" ? "Male" : "Female"; ?></h3>
+                <h3>Age: <?php echo (new DateTime())->diff(new DateTime("$age"))->y; ?></h3>
+                <h3 style="display: inline;">Change password</h3>
+                <i class="fa-solid fa-user-pen"></i>     
             </div>
             <br><br><br>
         </section>
