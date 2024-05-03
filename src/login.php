@@ -1,3 +1,14 @@
+<?php
+    require("auth.php");
+
+    if (isset($_POST["submit"])) {
+        $name = $_POST["username"];
+        $password = $_POST["password"];
+
+        login($name, $password);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
