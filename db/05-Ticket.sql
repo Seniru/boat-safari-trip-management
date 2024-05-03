@@ -1,6 +1,6 @@
 CREATE TABLE Ticket(
    TicketID INT AUTO_INCREMENT,
-   Status VARCHAR(5)NOT NULL,
+   Status VARCHAR(6) NOT NULL,
    Subject VARCHAR(30) NOT NULL,
    InquiryType VARCHAR(15) NOT NULL,
    Message VARCHAR(200) NOT NULL,
