@@ -85,7 +85,7 @@ header > #header-user-profile {
 
 }
 
-header > #header-user-profile > button{
+header > #header-user-profile > a > button{ 
 	color: #000000;
 	background-color: #FFFFFF;
 	border-radius: 0;
@@ -158,6 +158,7 @@ button, input[type=submit] {
     font-weight: 700;
     font-style: normal;
     color: white;
+	cursor: pointer;
 }
 
 /* button mouse over style */
