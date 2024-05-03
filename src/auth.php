@@ -6,12 +6,20 @@
     $userid = NULL;
     $loggedin = FALSE;
     $role = NULL;
+    
+    session_start();
 
-    if (isset($_SESSION["userid"])) {
+    if (isset($_SESSION["id"])) {
         $username = $_SESSION["name"];
         $userid = $_SESSION["id"];
         $role = $_SESSION["role"];
         $loggedin = TRUE;
+    }
+
+    if (isset($restrict_page)) {
+        if ($role != $restrict_page) {
+            header("Location: homepage.php");
+        }
     }
 
     function login($username, $password) {
