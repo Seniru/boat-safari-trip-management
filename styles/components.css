@@ -98,34 +98,94 @@ header > #header-user-profile > a > button{
 }
 
 header > #header-user-profile > .profile-image {
-
 	border-color: #FFFFFF;
 	margin: auto;
 	display: block;
 }
 
+#profile-options {
+	position: fixed;
+    right: 4px;
+    top: 25px;
+	display: none;
+}
+
+#profile-options > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px;
+}
+
+#profile-options > ul > li {
+	color: black;
+    border-bottom: 1px solid black;
+}
+
+#profile-options::before {
+	content: " ";
+    background-color: #839790;
+    position: fixed;
+    right: 16px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+}
+
 /* footer style */
 footer {
 	margin-top: 10px;
-	padding: 15px;
-	background-color: #606060;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    width: calc(100% - 30px);
+	position: relative;
 }
 
 footer > div {
-	display: table-cell;
+	display: inline-block;
 	width: 33%;
+	vertical-align: middle;
 }
 
 footer > #footer-links {
+	text-align: left;
+}
 
+#footer-links > a, #footer-links > a:visited {
+	color: #1FD1D0;
+	text-decoration: none;
+}
+
+#footer-links > a:hover, #footer-links > a:active {
+	color: #117D7C;
+	text-decoration: underline;
 }
 
 footer > #footer-socials {
 	text-align: center;
 }
 
-footer > #footer-newsletter {
+#footer-socials > .fa-brands {
+	font-weight: 400;
+    font-size: 25px;  
+    margin: 5px;
+}
 
+footer > #footer-newsletter {
+	text-align: right;
+}
+
+#footer-newsletter > input {
+	background-color: #A4C1CB;
+}
+
+#subscribe {
+	background-color: black;
+    border: 1px solid #117D7C;
+    border-radius: 3px;
+    color: #93999A;
+    font-weight: 200;
 }
 
 /* primary heading style */
@@ -146,6 +206,15 @@ h3 {
 /* paragraph style */
 p {
 
+}
+
+a, a:visited {
+	color: #216b6a;
+	text-decoration: none;
+}
+a:hover, a:active {
+	color: #184f4e;
+	text-decoration: underline;
 }
 
 /* button (normal) style */

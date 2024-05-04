@@ -13,31 +13,43 @@
     <link rel="stylesheet" href="../styles/components.css">
     <!--font awesomem-->
     <script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Privacy Policy</title>
+    <style>
+        h2 {
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            margin: 15px;
+        }
+    </style>
 </head>
 
 <body>
     <?php require("./views/header.php") ?>
 
-    <!-- body content -->
-    <h3>Terms & Condition</h3>
-    <div>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.
+    
+    <h2>Terms & Condition</h2>
+    <div class="container">
+        <div>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.
+        </div>
+        <ul>
+            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</li>
+            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</li>
+            <li></li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</li>
+        </ul>
+    
+        <h3>Scope of our service:</h3>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</p>
+    
+        <h3>Our responsibilities:</h3>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</p>
+    
+        <h3>Cancellation policy:</h3>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</p>
     </div>
-    <ul>
-        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</li>
-        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</li>
-        <li></li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</li>
-    </ul>
-
-    <h3>Scope of our service:</h3>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</p>
-
-    <h3>Our responsibilities:</h3>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</p>
-
-    <h3>Cancellation policy:</h3>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur perspiciatis nesciunt laudantium odio, reprehenderit quibusdam neque sequi iste, possimus culpa, at molestias alias optio. Omnis possimus quisquam vero ut et.</p>
     <?php require("./views/footer.php") ?>
 
 </body>

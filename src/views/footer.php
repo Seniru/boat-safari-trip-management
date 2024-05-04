@@ -14,6 +14,6 @@
 	<div id="footer-newsletter">
 		GET SPECIAL OFFERS IN OUR NEWSLETTER <br>
 		<input type="email">
-		<button>SUBSCRIBE</button>
+		<button id="subscribe">SUBSCRIBE</button>
 	</div>
 </footer>
