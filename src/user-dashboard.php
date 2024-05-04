@@ -133,7 +133,7 @@
         <input type="checkbox"> Facility #1<br>
         <input type="checkbox"> Facility #2<br>
         <input type="checkbox"> Facility #3<br>
-        <input type="submit" value="BOOK NOW">
+        <input type="submit" value="BOOK NOW" name="create-trip">
     </form>
     <br>
     <section id="trip-details-container">
