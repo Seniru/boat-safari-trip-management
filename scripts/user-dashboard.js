@@ -7,6 +7,8 @@ function selectPackage(event) {
     
     locationSelector.value = location
     boatTypeSelector.value = boatType
+
+    window.scrollTo(0, document.getElementsByTagName("form")[0].offsetTop - 110)
 }
 
 function createReport() {
