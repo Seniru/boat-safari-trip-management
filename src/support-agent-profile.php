@@ -36,6 +36,17 @@
         }
     }
 
+       // Change password
+       if (isset($_POST["reset-password"])) {
+        $new_pass = $_POST["password"];
+        $success = $conn->query("UPDATE CustomerSupportAgent SET Password='$new_pass' WHERE StaffID=$userid");
+        if ($success) {
+            echo "<script>alert('Password updated!')</script>";
+        } else {
+            echo "<script>alert('Operation failed!')</script>";
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +63,8 @@
 		<link rel="stylesheet" href="../styles/components.css">
 		<!--font awesomem-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
-        <title>Document</title>
+        <script src="../scripts/change-pass-util.js"></script>
+        <title>Profile | Customer Support Agent</title>
         <style>
             .profilepicture{
                 width:150px;
@@ -76,8 +88,10 @@
                 <h3>Customer Support Agent</h3>
                 <h3><?php echo $gender == "M" ? "Male" : "Female"; ?></h3>
                 <h3>Age: <?php echo (new DateTime())->diff(new DateTime("$age"))->y; ?></h3>
-                <h3 style="display: inline;">Change password</h3>
-                <i class="fa-solid fa-user-pen"></i>     
+                <button onclick="changePassword(event, 'support-agent-profile.php')">
+                    Change password
+                    <i class="fa-solid fa-user-pen"></i><br>
+                </a>
             </div>
             <br><br><br>
         </section>
