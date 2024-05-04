@@ -1,4 +1,5 @@
 <?php
+    $restrict_page = "support_agent";
 
     require("auth.php");
 
@@ -8,11 +9,10 @@
     $profile_name = $query_params["name"];
     $gender = NULL;
     $age = NULL;
-
+    $res = $conn->query("SELECT * FROM CustomerSupportAgent WHERE Name='" . ($profile_name ?? $username) . "';");
     // query parameter name is not empty
     if (!(is_null($profile_name) || $profile_name == "")) {
         // search for the user
-        $res = $conn->query("SELECT * FROM CustomerSupportAgent WHERE Name='$profile_name';");
 
         if ($res->num_rows == 0) {
             echo "<script>
@@ -24,12 +24,16 @@
             $gender = $row["Gender"];
             $age = $row["DateOfBirth"];
         }
-
+        
     } else {
-        if ($role != "support-agent") {
+        if ($role != "support_agent") {
             header("Location: homepage.php");
+        } else {
+            // displaying own profile
+            $row = $res->fetch_assoc();
+            $gender = $row["Gender"];
+            $age = $row["DateOfBirth"];
         }
-        // displaying own profile
     }
 
 ?>
@@ -68,7 +72,7 @@
             <h2 style="color: white;">Profile Settings</h2>
             <div class="container">
                 <img class="profilepicture" src="../images/user-solid.svg">
-                <h3><?php echo $profile_name; ?></h3>
+                <h3><?php echo $profile_name ?? $username; ?></h3>
                 <h3>Customer Support Agent</h3>
                 <h3><?php echo $gender == "M" ? "Male" : "Female"; ?></h3>
                 <h3>Age: <?php echo (new DateTime())->diff(new DateTime("$age"))->y; ?></h3>
