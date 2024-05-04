@@ -8,5 +8,8 @@ CREATE TABLE Trip (
     UserID INT NOT NULL,
     StaffID INT,
     LocationID INT NOT NULL,
-    PRIMARY KEY (TripID)
+    BoatTypeID INT NOT NULL,
+    PRIMARY KEY (TripID),
+    FOREIGN KEY (LocationID) INT NOT NULL,
+    FOREIGN KEY (BoatTypeID) INT NOT NULL
 );

@@ -73,11 +73,11 @@ VALUES
 -- Trip table
 INSERT INTO Trip (DateTime, PassengersOver12, PassengersUnder12, PaymentAmoount, PaymentMode, UserID, StaffID, LocationID)
 VALUES 
-    ('2024-05-10 09:00:00', 2, 1, 250.00, 'Credit Card', 1, NULL, 1),
-    ('2024-05-12 14:30:00', 4, 3, 500.00, 'PayPal', 2, NULL, 2),
-    ('2024-05-15 11:45:00', 3, 2, 400.00, 'Credit Card', 3, NULL, 3),
-    ('2024-05-18 10:00:00', 5, 0, 600.00, 'Credit Card', 4, NULL, 4),
-    ('2024-05-20 13:00:00', 1, 0, 150.00, 'Cash', 5, NULL, 5);
+    ('2024-05-10 09:00:00', 2, 1, 250.00, 'Credit Card', 1, NULL, 1, 1),
+    ('2024-05-12 14:30:00', 4, 3, 500.00, 'PayPal', 2, NULL, 2, 2),
+    ('2024-05-15 11:45:00', 3, 2, 400.00, 'Credit Card', 3, NULL, 3, 3),
+    ('2024-05-18 10:00:00', 5, 0, 600.00, 'Credit Card', 4, NULL, 4, 4),
+    ('2024-05-20 13:00:00', 1, 0, 150.00, 'Cash', 5, NULL, 5, 5);
 
 -- TripFacilities table
 INSERT INTO TripFacilities (TripID, Facility)
