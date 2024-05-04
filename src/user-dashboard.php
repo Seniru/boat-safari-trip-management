@@ -110,10 +110,10 @@
                 </td>
                 <td>
                     Age 12+
-                    <input type="number" id="passengers-o12" onchange="createReport()">
+                    <input type="number" name="passengers-o12" id="passengers-o12" onchange="createReport()">
                     <br>
                     Age 0-12
-                    <input type="number" id="passengers-u12" onchange="createReport()">
+                    <input type="number" name="passengers-u12" id="passengers-u12" onchange="createReport()">
                 </td>
                 <td>
                     <br>
