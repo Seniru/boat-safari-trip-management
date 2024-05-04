@@ -17,12 +17,6 @@
     $new_trip_offset = $_SESSION["new_trip_offset"];
     $ticket_offset = $_SESSION["ticket_offset"];
 
-    // Create/Edit feedback
-    if (isset($_POST["post-review"])) {
-        // check if a review already exists for this trip
-
-    }
-
     $profile = $conn->query("SELECT * FROM User WHERE UserID=$userid")->fetch_assoc();
     $ticket_res = $conn->query("SELECT * FROM Ticket WHERE UserID=$userid LIMIT 1 OFFSET $ticket_offset");
     $old_trips_res = $conn->query("SELECT * FROM Trip t, Location l, BoatType b
@@ -30,18 +24,72 @@
         LIMIT 1
         OFFSET $old_trip_offset
     ");
-    // TODO: display according to the trip id
-    $old_trip_review = $conn->query("SELECT * FROM UserTripReview utr, Trip t, Review r, User u
-        WHERE utr.UserID = u.UserID AND utr.TripID = t.TripID AND utr.ReviewID = r.ReviewID AND u.UserID = $userid
-    ");
+    
+    $previous_trip = NULL;
+    $old_trip_review = array();
+    if ($old_trips_res->num_rows > 0) {
+        $previous_trip = $old_trips_res->fetch_assoc();
+        $old_trip_review = $conn->query("SELECT * FROM UserTripReview utr, Trip t, Review r, User u
+            WHERE utr.UserID = u.UserID
+            AND utr.TripID = t.TripID
+            AND utr.ReviewID = r.ReviewID
+            AND u.UserID = $userid
+            AND utr.TripID = {$previous_trip["TripID"]}
+        ");
+    }
+
     $ongoing_trips_res = $conn->query("SELECT * FROM Trip t, Location l, BoatType b
         WHERE t.LocationID = l.LocationID AND UserID=$userid AND t.BoatTypeID = b.BoatTypeID AND DateTime >= NOW()
         LIMIT 1
         OFFSET $new_trip_offset
     ");
 
+    // Create/Edit feedback
+    if (isset($_POST["post-review"])) {
+        $content = $_POST["review-content"];
+        createReview($previous_trip, NULL, $content);
+    }
+    // Ratings
+    if (isset($_GET["rating"])) {
+        createReview($previous_trip, $_GET["rating"], NULL);
+    }
+
+    // Change password
+    if (isset($_POST["reset-password"])) {
+        $new_pass = $_POST["password"];
+        $success = $conn->query("UPDATE User SET Password='$new_pass' WHERE UserID=$userid");
+        if ($success) {
+            echo "<script>alert('Password updated!')</script>";
+        } else {
+            echo "<script>alert('Operation failed!')</script>";
+        }
+    }
+
+    function createReview($trip, $rating, $review) {
+        global $conn, $userid;
+        $set = array();
+        if ($rating != NULL) array_push($set, "Rating = $rating");
+        if ($review != NULL) array_push($set," Content = '$review'");
+        $set_statement = implode(", ", $set);
+
+        $check_review = $conn->query("SELECT * FROM UserTripReview WHERE TripID={$trip["TripID"]}");
+        if ($check_review->num_rows > 0) {
+            $rvw = $check_review->fetch_assoc();
+            $conn->query("UPDATE Review SET $set_statement WHERE ReviewID={$rvw["ReviewID"]}");
+            // reload so the review gets updated (lazy fix)
+            header("Location: user-profile.php");
+        } else {
+            $rating = $rating ?? 0;
+            $review = $review ?? "";
+            $conn->query("INSERT INTO Review VALUES (
+                NULL, $rating, '$review', $userid
+            )");
+            $reviewID = mysqli_insert_id($conn);
+            $conn->query("INSERT INTO UserTripReview VALUES ($userid, {$trip["TripID"]}, $reviewID)");
+        }
+    }
+
     function handlePagination($type, $direction) {
-        echo "<script>console.log('f$type $direction')</script>";
         if ($direction == "pre") {
             $_SESSION[$type . "_offset"] = max(0, $_SESSION[$type . "_offset"] - 1);
             // remove the query parameters to stop calculating the page twice
@@ -72,6 +120,7 @@
     <link rel="stylesheet" href="../styles/components.css">
     <!--font awesomem-->
     <script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
+    <script src="../scripts/change-pass-util.js"></script>
     <title>Profile</title>
     <style>
 
@@ -151,7 +200,6 @@
                             <br><br>"
                         ;
                     } else {
-                        $previous_trip = $old_trips_res->fetch_assoc();
                         echo "<img class='trip-image' src='../images/slideshow-00.jpg'>
                             <br>
                             <a href='user-profile.php?old_trip-pre'><button class='arrow-left'>&lt;</button></a>
@@ -162,7 +210,7 @@
                             <i class='fa-solid fa-sailboat'></i>
                             {$previous_trip["BoatTypeName"]}<br><br>
                         ";
-
+                        
                         $review = $old_trip_review->fetch_assoc();
                         if (is_null($review)) $review = array();
 
@@ -176,8 +224,10 @@
                         if (!is_null($review)) {
                             $num_stars = $review["Rating"];
                             $no_stars = 5 - $num_stars;
-                            for ($i = 0; $i < $num_stars; $i++) echo "<i class='fa-solid fa-star' style='color: yellow;'></i>";
-                            for ($i = 0; $i < $no_stars; $i++) echo "<i class='fa-solid fa-star'></i>";
+                            for ($i = 0; $i < $num_stars; $i++)
+                                echo "<a href='user-profile.php?rating=" . ($i + 1) . "'><i class='fa-solid fa-star' style='color: yellow;'></i></a>";
+                            for ($i = 0; $i < $no_stars; $i++)
+                                echo "<a href='user-profile.php?rating=" . ($num_stars + $i + 1) . "'><i class='fa-solid fa-star'></i></a>";
                         }
                             
                     }
@@ -220,8 +270,10 @@
                 <?php echo "{$profile["FirstName"]} {$profile["LastName"]}" ?><br>
                 <?php echo $profile["Email"] ?><br>
                 Gender: <?php echo $profile["Gender"] ?><br><br>
-                Change password
-                <i class="fa-solid fa-user-pen"></i><br>
+                <button onclick="changePassword(event, 'user-profile.php')">
+                    Change password
+                    <i class="fa-solid fa-user-pen"></i><br>
+                </a>
             </div>
         </section>
         <section id="tickets">
