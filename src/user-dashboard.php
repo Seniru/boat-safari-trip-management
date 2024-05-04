@@ -1,3 +1,9 @@
+<?php
+    $restrict_page = "user";
+    
+    require("auth.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,100 +20,67 @@
     <link rel="stylesheet" href="../styles/user-dashboard.css">
     <!--font awesomem-->
     <script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
+    <script src="../scripts/user-dashboard.js"></script>
     <title>User Dashboard</title>
 </head>
 
 <body>
     <?php require("./views/header.php") ?>
 
+    <h3 style="color: white; margin-left: 25px;">Our packages</h3>
     <section id="packages">
-        <h3 style="color: white;">Our packages</h3>
-        <div class="container">
-            <div class="image-container">
-                <img src="../images/slideshow-00.jpg">
-            </div>
-            <div class="package-details">
-                <h3>Title</h3>
-                <span>
-                    <b>Location:</b>
-                    Location
-                    <br>
-                    <b>Boat type:</b>
-                    Boat type
-                    <br>
-                    <b>Facilities:</b>
-                    <ul>
-                        <li>Facility #1</li>
-                        <li>Facility #2</li>
-                        <li>Facility #3</li>
-                    </ul>
-                </span>
-                <div class="price">
-                    From <span class="money">$99.99</span>
-                </div>
-            </div>
-            <button> Select </button>
-        </div>
-        <div class="container">
-            <div class="image-container">
-                <img src="../images/slideshow-00.jpg">
-            </div>
-            <div class="package-details">
-                <h3>Title</h3>
-                <span>
-                    <b>Location:</b>
-                    Location
-                    <br>
-                    <b>Boat type:</b>
-                    Boat type
-                    <br>
-                    <b>Facilities:</b>
-                    <ul>
-                        <li>Facility #1</li>
-                        <li>Facility #2</li>
-                        <li>Facility #3</li>
-                    </ul>
-                </span>
-                <div class="price">
-                    From <span class="money">$99.99</span>
-                </div>
-            </div>
-            <button> Select </button>
-        </div>
-        <div class="container">
-            <div class="image-container">
-                <img src="../images/slideshow-00.jpg">
-            </div>
-            <div class="package-details">
-                <h3>Title</h3>
-                <span>
-                    <b>Location:</b>
-                    Location
-                    <br>
-                    <b>Boat type:</b>
-                    Boat type
-                    <br>
-                    <b>Facilities:</b>
-                    <ul>
-                        <li>Facility #1</li>
-                        <li>Facility #2</li>
-                        <li>Facility #3</li>
-                    </ul>
-                </span>
-                <div class="price">
-                    From <span class="money">$99.99</span>
-                </div>
-            </div>
-            <button> Select </button>
-        </div>
+        <?php
+
+            $res = $conn->query("SELECT * FROM Package p, BoatType b, Location l
+                WHERE p.BoatTypeID = b.BoatTypeID AND p.LocationID = l.LocationID
+            ");
+
+            while ($package = $res->fetch_assoc()) {
+                echo "<div class='container'>
+                    <div class='image-container'>
+                        <img src='../images/slideshow-00.jpg'>
+                    </div>
+                    <div class='package-details'>
+                        <h3>{$package["PackageName"]}</h3>
+                        <span>
+                            <b>Location:</b>
+                            <span class='location'>{$package["LocationName"]}</span>
+                            <br>
+                            <b>Boat type:</b>
+                            <span class='boat-type'>{$package["BoatTypeName"]}</span>
+                            <br>
+                            <b>Facilities:</b>
+                            <ul>
+                ";
+
+                $res2 = $conn->query("SELECT * FROM PackageFacilities WHERE PackageID={$package["PackageID"]}");
+                while ($facility = $res2->fetch_assoc()) {
+                    echo "<li>{$facility["Facility"]}</li>";
+                }
+ 
+                echo "
+                            </ul>
+                        </span>
+                        <div class='price'>
+                            From <span class='money'>$99.99</span>
+                        </div>
+                    </div>
+                    <button onclick='selectPackage(event)'> Select </button>
+                </div>";
+            }
+        ?>
     </section>
-    <form method="POST" action="payment.php">
+
+    <form method="POST" action="payments.php">
         Search Location
         <br>
-        <select name="location"> 
-            <option>Location #1</option>
-            <option>Location #2</option>
-            <option>Location #3</option>
+        <select name="location" id="location" onchange="createReport()"> 
+            <?php
+                $res = $conn->query("SELECT * FROM Location");
+                while ($location = $res->fetch_assoc()) {
+                    echo "<option>{$location["LocationName"]}</option>";
+                }
+            ?>
         </select>
         <br><br>
         <table>
@@ -121,7 +94,7 @@
             <tr>
                 <td>
                     <br>
-                    <input type="date" name="date">
+                    <input type="date" name="date" id="date" onchange="createReport()"> 
                 </td>
                 <td>
                     <br>
@@ -133,20 +106,24 @@
                 </td>
                 <td>
                     <br>    
-                    <input type="time" name="time">
+                    <input type="time" name="time" id="time" onchange="createReport()">
                 </td>
                 <td>
                     Age 12+
-                    <input type="number">
+                    <input type="number" id="passengers-o12" onchange="createReport()">
                     <br>
                     Age 0-12
-                    <input type="number">
+                    <input type="number" id="passengers-u12" onchange="createReport()">
                 </td>
                 <td>
                     <br>
-                    <select name="boat-type">
-                        <option value="swan">HANSA boat</option>
-                        <option>Boat #2</option>
+                    <select id="boat-type" name="boat-type">
+                        <?php
+                            $res = $conn->query("SELECT * FROM BoatType");
+                            while ($location = $res->fetch_assoc()) {
+                                echo "<option>{$location["BoatTypeName"]}</option>";
+                            }
+                        ?>
                     </select>
                 </td>
             </tr>
@@ -166,8 +143,28 @@
                 <img src="../images/slideshow-00.jpg">
             </div>
             <div id="trip-info">
-               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error deleniti facilis reiciendis quod mollitia quam, officiis iusto eligendi eius voluptates repudiandae fuga veritatis suscipit temporibus laudantium minus corporis velit labore?
-               <!--todo: replace this with real data-->
+                <b>Location</b>
+                <span id="review-location"></span>
+                <br>
+                <b>Date: </b>
+                <span id="review-date"></span>
+                <br>
+                <b>Time: </b>
+                <span id="review-time"></span>
+                <br>
+                <b>Passengers:</b><br>
+                &emsp;<b>Over 12: </b>
+                <span id="review-passengers-o12"></span>
+                <br>
+                &emsp;<b>Under 12: </b>
+                <span id="review-passengers-u12"></span>
+                <br><br>
+                <b>Boat: </b>
+                <span id="review-boat"></span>
+                <br>
+                <b>Facilities: </b>
+                <br>
+                <ul id="review-facilities"></ul>
             </div>
         </div>
     </section>

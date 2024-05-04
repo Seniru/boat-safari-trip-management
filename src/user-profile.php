@@ -1,3 +1,62 @@
+<?php
+    $restrict_page = "user";
+    
+    require("auth.php");
+
+    $query_params = NULL;
+    parse_str($_SERVER["QUERY_STRING"], $query_params);
+
+    $_SESSION["old_trip_offset"] = $_SESSION["old_trip_offset"] ?? 0;
+    $_SESSION["new_trip_offset"] = $_SESSION["new_trip_offset"] ?? 0;
+    $_SESSION["ticket_offset"] = $_SESSION["ticket_offset"] ?? 0;
+    
+    $frags = explode("-", $_SERVER["QUERY_STRING"]);
+    handlePagination($frags[0], $frags[1]);
+    
+    $old_trip_offset = $_SESSION["old_trip_offset"];
+    $new_trip_offset = $_SESSION["new_trip_offset"];
+    $ticket_offset = $_SESSION["ticket_offset"];
+
+    // Create/Edit feedback
+    if (isset($_POST["post-review"])) {
+        // check if a review already exists for this trip
+
+    }
+
+    $profile = $conn->query("SELECT * FROM User WHERE UserID=$userid")->fetch_assoc();
+    $ticket_res = $conn->query("SELECT * FROM Ticket WHERE UserID=$userid LIMIT 1 OFFSET $ticket_offset");
+    $old_trips_res = $conn->query("SELECT * FROM Trip t, Location l, BoatType b
+        WHERE t.LocationID = l.LocationID AND UserID=$userid AND t.BoatTypeID = b.BoatTypeID AND DateTime < NOW()
+        LIMIT 1
+        OFFSET $old_trip_offset
+    ");
+    // TODO: display according to the trip id
+    $old_trip_review = $conn->query("SELECT * FROM UserTripReview utr, Trip t, Review r, User u
+        WHERE utr.UserID = u.UserID AND utr.TripID = t.TripID AND utr.ReviewID = r.ReviewID AND u.UserID = $userid
+    ");
+    $ongoing_trips_res = $conn->query("SELECT * FROM Trip t, Location l, BoatType b
+        WHERE t.LocationID = l.LocationID AND UserID=$userid AND t.BoatTypeID = b.BoatTypeID AND DateTime >= NOW()
+        LIMIT 1
+        OFFSET $new_trip_offset
+    ");
+
+    function handlePagination($type, $direction) {
+        echo "<script>console.log('f$type $direction')</script>";
+        if ($direction == "pre") {
+            $_SESSION[$type . "_offset"] = max(0, $_SESSION[$type . "_offset"] - 1);
+            // remove the query parameters to stop calculating the page twice
+            header("Location: user-profile.php");
+            exit();
+        } elseif ($direction == "next") {
+            $_SESSION[$type . "_offset"] = $_SESSION[$type . "_offset"] + 1;
+            // remove the query parameters to stop calculating the page twice
+            header("Location: user-profile.php");
+            exit();
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +87,10 @@
 
         h2 {
             color: white;
+        }
+
+        textarea {
+           background-color: inherit;
         }
 
         #content {
@@ -80,43 +143,83 @@
         <section id="previous-trips">
             <h2>Previous trips</h2>
             <div class="container">
-                <img class="trip-image" src="../images/slideshow-00.jpg">
-                <br>
-                <button class="arrow-left">&lt;</button>
-                <button class="arrow-right">&gt;</button>
-                <br><br>
-                Location<br>
-                Boat type<br>
-                <a href="/feedback.php">
-                    Feedback
-                    <i class="fa-solid fa-paper-plane"></i>
-                </a>
-                <br>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+                <?php
+                    if ($old_trips_res->num_rows == 0) {
+                        echo "<br><br><br><br>No more previous trips!<br><br>
+                            <a href='user-profile.php?old_trip-pre'><button class='arrow-left'>&lt;</button></a>
+                            <a href='user-profile.php?old_trip-next'><button class='arrow-right'>&gt;</button></a>
+                            <br><br>"
+                        ;
+                    } else {
+                        $previous_trip = $old_trips_res->fetch_assoc();
+                        echo "<img class='trip-image' src='../images/slideshow-00.jpg'>
+                            <br>
+                            <a href='user-profile.php?old_trip-pre'><button class='arrow-left'>&lt;</button></a>
+                            <a href='user-profile.php?old_trip-next'><button class='arrow-right'>&gt;</button></a>
+                            <br><br>
+                            <i class='fa-solid fa-location-dot'></i>
+                            {$previous_trip["LocationName"]}<br>
+                            <i class='fa-solid fa-sailboat'></i>
+                            {$previous_trip["BoatTypeName"]}<br><br>
+                        ";
+
+                        $review = $old_trip_review->fetch_assoc();
+                        if (is_null($review)) $review = array();
+
+                        echo "<form method='POST' action=''>
+                                <textarea cols='30' name='review-content'>{$review["Content"]}</textarea><br>           
+                                <button type='submit' name='post-review'>
+                                    <i class='fa-solid fa-paper-plane'></i> Submit Feedback
+                                </button>
+                            </form>";
+
+                        if (!is_null($review)) {
+                            $num_stars = $review["Rating"];
+                            $no_stars = 5 - $num_stars;
+                            for ($i = 0; $i < $num_stars; $i++) echo "<i class='fa-solid fa-star' style='color: yellow;'></i>";
+                            for ($i = 0; $i < $no_stars; $i++) echo "<i class='fa-solid fa-star'></i>";
+                        }
+                            
+                    }
+                ?>
             </div>
         </section>
         <section id="ongoing-trips">
             <h2>Ongoing trips</h2>
             <div class="container">
-                <img class="trip-image" src="../images/slideshow-00.jpg">
-                <br>
-                <button class="arrow-left">&lt;</button>
-                <button class="arrow-right">&gt;</button>
-                <br><br>
-                Location<br>
-                Boat type<br>
+                <?php
+                    if ($ongoing_trips_res->num_rows == 0) {
+                        echo "<br><br><br><br>No more trips!<br><br>
+                            <a href='user-profile.php?new_trip-pre'><button class='arrow-left'>&lt;</button></a>
+                            <a href='user-profile.php?new_trip-next'><button class='arrow-right'>&gt;</button></a>
+                            <br><br>";
+                    } else {
+                        $ongoing_trip = $ongoing_trips_res->fetch_assoc();
+                        echo "
+                            <img class='trip-image' src='../images/slideshow-00.jpg'>
+                            <br>
+                            <a href='user-profile.php?new_trip-pre'><button class='arrow-left'>&lt;</button></a>
+                            <a href='user-profile.php?new_trip-next'><button class='arrow-right'>&gt;</button></a>
+                            <br><br>
+                            <i class='fa-solid fa-location-dot'></i>
+                            {$ongoing_trip["LocationName"]}<br>
+                            <i class='fa-solid fa-sailboat'></i>
+                            {$ongoing_trip["BoatTypeName"]}<br><br>
+                            <i class='fa-regular fa-calendar'></i>
+                            Upcoming <b>{$ongoing_trip["DateTime"]}</b>
+                        ";
+                    }
+                ?>
+                
+            </div>
         </section>
         <section id="profile">
             <h2>Profile Settings</h2>
             <div class="container">
                 <img class="profilepicture" src="../images/user-solid.svg"><br>
-                Name<br>
-                Email<br>
-                Gender<br><br>
+                <?php echo "{$profile["FirstName"]} {$profile["LastName"]}" ?><br>
+                <?php echo $profile["Email"] ?><br>
+                Gender: <?php echo $profile["Gender"] ?><br><br>
                 Change password
                 <i class="fa-solid fa-user-pen"></i><br>
             </div>
@@ -124,18 +227,33 @@
         <section id="tickets">
             <h2>My tickets</h2>
             <div class="container">
-                <span class="status">
-                    <i class="fa-solid fa-circle"></i>
-                    <span class="status-details">Closed</span>
-                </span>
-                <h4>Title</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus cupiditate quia maxime modi et vero exercitationem dolor atque cum sed amet expedita nobis, nesciunt deserunt, quis odit harum? Aliquid, numquam?</h4>
-                <br><br>
-                <button class="arrow-left">&lt;</button>
-                <button class="arrow-right">&gt;</button>
-                <br><br>
-                <div class="date">2024/01/01</div>
-                <br>
+                <?php
+                    if ($ticket_res->num_rows == 0) {
+                        echo "<br><br><br><br>No more tickets!<br><br>
+                        <a href='user-profile.php?ticket-pre'><button class='arrow-left'>&lt;</button></a>
+                        <a href='user-profile.php?ticket-next'><button class='arrow-right'>&gt;</button></a>
+                        <br><br>";
+                    } else {
+                        $ticket = $ticket_res->fetch_assoc();
+                        $status = $ticket["Status"];
+                        echo "<span class='status'>
+                                <i class='fa-solid fa-circle' " . ($status == "Open" ? "style='color:green;'" : "") . "></i>
+                                <span class='status-details'>$status</span>
+                            </span>
+                            <h4>{$ticket["Subject"]}</h4>
+                            <p>{$ticket["Message"]}</h4>
+                            <br><br>
+                            <a href='user-profile.php?ticket-pre'><button class='arrow-left'>&lt;</button></a>
+                            <a href='user-profile.php?ticket-next'><button class='arrow-right'>&gt;</button></a>
+                            <br><br>
+                            <div class='date'>
+                                <i class='fa-regular fa-calendar'></i>
+                                {$ticket["SubmittedDateTime"]}
+                            </div>
+                        <br>
+                        ";
+                    }
+                ?>
             </div>
         </section>
     </div>
