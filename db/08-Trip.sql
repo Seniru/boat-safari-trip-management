@@ -10,6 +10,6 @@ CREATE TABLE Trip (
     LocationID INT NOT NULL,
     BoatTypeID INT NOT NULL,
     PRIMARY KEY (TripID),
-    FOREIGN KEY (LocationID) INT NOT NULL,
-    FOREIGN KEY (BoatTypeID) INT NOT NULL
+    FOREIGN KEY (LocationID) REFERENCES Location (LocationID),
+    FOREIGN KEY (BoatTypeID) REFERENCES BoatType (BoatTypeID)
 );
