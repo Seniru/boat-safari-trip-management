@@ -6,7 +6,7 @@ CREATE TABLE Ticket(
    Message VARCHAR(200) NOT NULL,
    SubmittedDateTime DATETIME NOT NULL,
    UserID INT NOT NULL,
-   StaffID INT ,
+   StaffID INT,
    PRIMARY KEY (TicketID),
    FOREIGN KEY (UserID) REFERENCES `User` (UserID),
    FOREIGN KEY (StaffID) REFERENCES CustomerSupportAgent (StaffID)

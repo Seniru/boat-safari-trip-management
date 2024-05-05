@@ -1,3 +1,24 @@
+<?php
+    $restrict_page="user";
+
+    require("auth.php");
+    if(isset($_POST["submit"])){
+        $name=$_POST["name"];
+        $email=$_POST["Email"];
+        $ContactNumber=$_POST["Contact Number"];
+        $type=$_POST["type"];
+        $subject=$_POST["Subject"];
+        $content=$_POST["Content"];
+
+        $success = $conn->query("INSERT INTO Ticket VALUES(NULL,'Open','$subject','$type','$content','Now()',$userid,NULL);");
+        if ($success) {
+            echo"<script>alert('Ticket created!');</script>";
+
+        } 
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -54,13 +75,13 @@
         <!-- body content -->
         <div class="container">
             <h1>Customer Support Page</h1>
-            <form>
+            <form method="POST" action="">
             <label for="name">Name:</label><br>
             <input type="text" id="name" Name="name" placeholder="Enter your name"><br><br>
             <label for="Email">Email:</label><br>
             <input type="text" id="Email" name="Email" placeholder="Enter your Email"><br><br>
             <label for="Contact Number">Contact Number:</label><br>
-            <input type="text" id="Contact Number" name="Contact Number"placeholder="Enter your contact number"><br><br>
+            <input type="text" id="ContactNumber" name="ContactNumber"placeholder="Enter your contact number"><br><br>
             <label for="Request/Inquiry Type">Request/Inquiry Type:</label><br>
             <select name="type">
                 <option value="inquiries">Inquiries</option>
@@ -71,7 +92,7 @@
             <input type="text" id="Subject" name="Subject"placeholder="Type here"><br><br>
             <label for="Message">Message:</label><br>
             <textarea name="content" rows="8" cols="80"placeholder="Type here"></textarea><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" name="submit">
         </form>
         </div>
 
