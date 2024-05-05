@@ -92,27 +92,47 @@
             echo "<script>alert('Operation failed!')</script>";
         }
     }
+    
+    // Delete review
+    if (isset($_GET["delete-review"])) {
+        $reviewID = $_GET["delete-review"];
+        $conn->query("DELETE FROM UserTripReview WHERE ReviewID=$reviewID");
+        $conn->query("DELETE FROM Review WHERE ReviewID=$reviewID");
+        echo "<script>
+            alert('Deleted review!')
+            window.location.href = 'user-profile.php'
+        </script>";
+    }
 
+    // Delete ticket
     if(isset($_GET["delete-ticket"])){
         $ticketID=$_GET["delete-ticket"];
-        $conn->query("DELETE FROM Ticket WHERE TicketID=$ticketID");
-        echo"<script>alert('Ticket Deleted')</script>";
+        //$conn->query("DELETE FROM Ticket WHERE TicketID=$ticketID");
+        echo "<script>
+            alert('Ticket Deleted')
+            // refresh
+            window.location.href='user-profile.php';
+        </script>";
     }
     
+    // Delete account
     if(isset($_GET["delete-account"])){
         $conn->query("DELETE FROM User WHERE UserID=$userid");
         header("Location: logout.php");
     }
 
+    // Delete trip
     if(isset($_GET["delete-trip"])){
-
         $TripID = $_GET["delete-trip"];
-        echo $TripID;
         $conn->query("DELETE FROM TripFacilities WHERE TripID=$TripID");
         $conn->query("DELETE FROM UserTripReview WHERE TripID=$TripID");
         $conn->query("DELETE FROM Trip WHERE TripID=$TripID");
+        echo "<script>alert('Deleted trip!')</script>";
+
 
     }
+
+
 
     function createReview($trip, $rating, $review) {
         global $conn, $userid;
@@ -269,7 +289,11 @@
                             for ($i = 0; $i < $no_stars; $i++)
                                 echo "<a href='user-profile.php?rating=" . ($num_stars + $i + 1) . "'><i class='fa-solid fa-star'></i></a>";
                         }
-                            
+
+                        if ($view_mode == VIEW_OWN_PROFILE) {
+                            echo "<br><br><a href='user-profile.php?delete-review={$review["ReviewID"]}'><button>Delete review</button></a>";
+                        }
+
                     }
                 ?>
             </div>
@@ -315,14 +339,15 @@
                 <?php
                     if ($view_mode == VIEW_OWN_PROFILE) {
                         echo "
-                            <button onclick='changePassword(event, \'user-profile.php\')'>
+                            <button onclick=\"changePassword(event, 'user-profile.php')\">
                                 Change password
                                 <i class='fa-solid fa-user-pen'></i><br>
-                            </a>
+                            </button>
                         ";
                     }
                 ?>
-               <a href="user-profile.php?delete-account"><button>delete user account</button></a>
+                <br>
+                <a href="user-profile.php?delete-account"><button>Delete user account</button></a>
             </div>
         </section>
         <section id="tickets">
