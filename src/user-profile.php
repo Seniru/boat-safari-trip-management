@@ -93,6 +93,11 @@
         }
     }
 
+    if(isset($_GET["delete-account"])){
+        $conn->query("DELETE FROM User WHERE UserID=$userid");
+        header("Location: logout.php");
+    }
+
     function createReview($trip, $rating, $review) {
         global $conn, $userid;
         $set = array();
@@ -299,6 +304,7 @@
                         ";
                     }
                 ?>
+               <a href="user-profile.php?delete-account"><button>delete user account</button></a>
             </div>
         </section>
         <section id="tickets">
