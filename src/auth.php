@@ -59,7 +59,7 @@
                             header("Location: support-agent-dashboard.php");
                             break;
                         case "trip_provider":
-                            header("Location: trip-provider.php");
+                            header("Location: trip-provider-dashboard.php");
                             break;
                         case "system_admin":
                             header("Location: admin-dashboard.php");

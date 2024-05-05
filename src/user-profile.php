@@ -2,6 +2,7 @@
     $restrict_page = "user";
     
     require("auth.php");
+    require("libs/pagination.php");
 
     $query_params = NULL;
     parse_str($_SERVER["QUERY_STRING"], $query_params);
@@ -11,7 +12,7 @@
     $_SESSION["ticket_offset"] = $_SESSION["ticket_offset"] ?? 0;
     
     $frags = explode("-", $_SERVER["QUERY_STRING"]);
-    handlePagination($frags[0], $frags[1]);
+    handlePagination($frags[0], $frags[1], "user-profile.php");
     
     $old_trip_offset = $_SESSION["old_trip_offset"];
     $new_trip_offset = $_SESSION["new_trip_offset"];
@@ -86,20 +87,6 @@
             )");
             $reviewID = mysqli_insert_id($conn);
             $conn->query("INSERT INTO UserTripReview VALUES ($userid, {$trip["TripID"]}, $reviewID)");
-        }
-    }
-
-    function handlePagination($type, $direction) {
-        if ($direction == "pre") {
-            $_SESSION[$type . "_offset"] = max(0, $_SESSION[$type . "_offset"] - 1);
-            // remove the query parameters to stop calculating the page twice
-            header("Location: user-profile.php");
-            exit();
-        } elseif ($direction == "next") {
-            $_SESSION[$type . "_offset"] = $_SESSION[$type . "_offset"] + 1;
-            // remove the query parameters to stop calculating the page twice
-            header("Location: user-profile.php");
-            exit();
         }
     }
 
