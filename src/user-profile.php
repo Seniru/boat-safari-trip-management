@@ -98,6 +98,21 @@
         $conn->query("DELETE FROM Ticket WHERE TicketID=$ticketID");
         echo"<script>alert('Ticket Deleted')</script>";
     }
+    
+    if(isset($_GET["delete-account"])){
+        $conn->query("DELETE FROM User WHERE UserID=$userid");
+        header("Location: logout.php");
+    }
+
+    if(isset($_GET["delete-trip"])){
+
+        $TripID = $_GET["delete-trip"];
+        echo $TripID;
+        $conn->query("DELETE FROM TripFacilities WHERE TripID=$TripID");
+        $conn->query("DELETE FROM UserTripReview WHERE TripID=$TripID");
+        $conn->query("DELETE FROM Trip WHERE TripID=$TripID");
+
+    }
 
     function createReview($trip, $rating, $review) {
         global $conn, $userid;
@@ -282,6 +297,8 @@
                             {$ongoing_trip["BoatTypeName"]}<br><br>
                             <i class='fa-regular fa-calendar'></i>
                             Upcoming <b>{$ongoing_trip["DateTime"]}</b>
+                            <a href='user-profile.php?delete-trip={$ongoing_trip["TripID"]}'><button>RAMITH</button></a>
+
                         ";
                     }
                 ?>
@@ -305,6 +322,7 @@
                         ";
                     }
                 ?>
+               <a href="user-profile.php?delete-account"><button>delete user account</button></a>
             </div>
         </section>
         <section id="tickets">
@@ -337,9 +355,13 @@
                         <br>
                         ";
                     }
+
+                   
                 ?>
             </div>
+
         </section>
+
     </div>
 
     <?php require("./views/footer.php") ?>
