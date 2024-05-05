@@ -1,40 +1,34 @@
 <?php
-    $restrict_page = "support_agent";
+    //$restrict_page = "support_agent";
 
     require("auth.php");
+    require("libs/handleProfiles.php");
 
-    $query_params = NULL;
-    parse_str($_SERVER["QUERY_STRING"], $query_params);
 
-    $profile_name = $query_params["name"];
-    $gender = NULL;
-    $age = NULL;
-    $res = $conn->query("SELECT * FROM CustomerSupportAgent WHERE Name='" . ($profile_name ?? $username) . "';");
-    // query parameter name is not empty
-    if (!(is_null($profile_name) || $profile_name == "")) {
-        // search for the user
-
-        if ($res->num_rows == 0) {
-            echo "<script>
-                alert('Profile not found!');
-                window.location.href='homepage.php';
-            </script>";
-        } else {
-            $row = $res->fetch_assoc();
-            $gender = $row["Gender"];
-            $age = $row["DateOfBirth"];
-        }
-        
-    } else {
-        if ($role != "support_agent") {
+    $profile = NULL;
+    $view_mode = is_viewing_own_profile($userid, $role, $_GET["id"], "support_agent");
+    
+    switch ($view_mode) {
+        case UNAUTHORIZED_VIEW:
             header("Location: homepage.php");
-        } else {
-            // displaying own profile
-            $row = $res->fetch_assoc();
-            $gender = $row["Gender"];
-            $age = $row["DateOfBirth"];
+            exit();
+            break;
+        case VIEW_OWN_PROFILE:
+            $res = $conn->query("SELECT * FROM CustomerSupportAgent WHERE StaffID=$userid;");
+            $profile = $res->fetch_assoc();
+            break;
+        case VIEW_OTHER_PROFILE:
+            $res = $conn->query("SELECT * FROM CustomerSupportAgent WHERE StaffID={$_GET["id"]}");
+            if ($res->num_rows == 0) {
+                echo "<script>
+                    alert('Profile not found!');
+                    window.location.href='homepage.php';
+                </script>";
+                exit();
+            } else {
+                $profile = $res->fetch_assoc();
+            }              
         }
-    }
 
        // Change password
        if (isset($_POST["reset-password"])) {
@@ -84,14 +78,20 @@
             <h2 style="color: white;">Profile Settings</h2>
             <div class="container">
                 <img class="profilepicture" src="../images/user-solid.svg">
-                <h3><?php echo $profile_name ?? $username; ?></h3>
+                <h3><?php echo $profile["Name"] ?></h3>
                 <h3>Customer Support Agent</h3>
-                <h3><?php echo $gender == "M" ? "Male" : "Female"; ?></h3>
-                <h3>Age: <?php echo (new DateTime())->diff(new DateTime("$age"))->y; ?></h3>
-                <button onclick="changePassword(event, 'support-agent-profile.php')">
-                    Change password
-                    <i class="fa-solid fa-user-pen"></i><br>
-                </a>
+                <h3><?php echo $profile["Gender"] == "M" ? "Male" : "Female"; ?></h3>
+                <h3>Age: <?php echo (new DateTime())->diff(new DateTime($profile["DateOfBirth"]))->y; ?></h3>
+                <?php
+                    if ($view_mode == VIEW_OWN_PROFILE) {
+                        echo "
+                            <button onclick='changePassword(event, \'support-agent-profile.php\')'>
+                                Change password
+                                <i class='fa-solid fa-user-pen'></i><br>
+                            </button>
+                        ";
+                    }
+                ?>
             </div>
             <br><br><br>
         </section>

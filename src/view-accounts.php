@@ -48,6 +48,13 @@
 
         $res = $conn->query($query);
         while ($row = $res->fetch_assoc()) {
+            $pages = array(
+                "User" => "user-profile.php",
+                "TripProvider" => "trip-provider-profile.php",
+                "CustomerSupportAgent" => "support-agent-profile.php"
+            );
+            $linkname = "{$pages["$table"]}?id=" . ($row["UserID"] ?? $row["StaffID"]);
+            
             echo "
                 <div class='container'>
                         <div class='user-details'>" .
@@ -56,7 +63,7 @@
                             {$clean_names[$table]}
                         </div>
                         <div class='profile-link'>
-                            <a href='/'>View profile</a>
+                            <a href='$linkname'>View profile</a>
                         </div>
                     </div>
                 ";
