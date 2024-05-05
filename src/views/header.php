@@ -1,4 +1,8 @@
-<?php require_once("auth.php"); ?>
+<?php
+	require_once("auth.php");
+	require_once("libs/notifications.php");
+	$current_page = htmlspecialchars($_SERVER['PHP_SELF']);
+?>
 
 <header>
 
@@ -17,6 +21,22 @@
 				target.classList.add("fa-caret-down")
 			}
 		}
+
+		function toggleNotifications(event) {
+			let target = event.target;
+			if (target.classList.contains("open")) {
+				// open notifications
+				document.getElementById("notification-box").style.display = "block"
+				target.classList.remove("open")
+				target.classList.add("close")
+			} else {
+				// close notifications
+				document.getElementById("notification-box").style.display = "none"
+				target.classList.remove("close")
+				target.classList.add("open")
+			}
+		}
+
 	</script>
 
 	<div id="header-logo">
@@ -38,7 +58,21 @@
 	</div>
 	<div id="header-notifications">
 		<input type="search" placeholder="Search">
-		<i class="fa-solid fa-bell" style="color: white; margin-left: 15px;"></i>
+		<i class="fa-solid fa-bell open" style="color: white; margin-left: 15px; cursor: pointer;" onclick="toggleNotifications(event)"></i>
+
+		<?php
+			if ($loggedin) {
+				$notifications = $conn->query("SELECT * FROM Notification WHERE UserID=$userid AND `Read` = FALSE");
+				if ($notifications->num_rows > 0) {
+					echo "<span id='notification-count'>$notifications->num_rows</span>";
+					echo "<div id='notification-box'><ul><a href='$current_page?read-notifs'><i class='fa-solid fa-check'></i> Read all</a>";
+					while ($notif = $notifications->fetch_assoc()) {
+						echo "<li>{$notif["Message"]}</li>";
+					}
+					echo "</ul></div>";
+				}
+			}
+		?>
 	</div>
 	<div id="header-user-profile">
 		<?php
@@ -47,7 +81,7 @@
 						style='cursor: pointer; position: fixed; right: 16px; top: 5px'>
 					</i><br>
 					<img src='../images/user-solid.svg' class='profile-image'>
-					<div id='profile-options' style='background-color: #839790;	border-radius: 5px;	box-shadow: 0px 4px 6px 0px rgba(0,0,0,.25); padding: 15px;'>
+					<div id='profile-options' style=''>
 						<ul>
 							<li>
 								<a href='";

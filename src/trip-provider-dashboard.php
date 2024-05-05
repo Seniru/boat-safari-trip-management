@@ -2,12 +2,15 @@
     $restrict_page = "trip_provider";
     
     require("auth.php");
+    require("libs/notifications.php");
 
     // approve trip
     $approveTrip = $_GET["approveTrip"];
     if (isset($approveTrip)) {
         $success = $conn->query("UPDATE Trip SET StaffID = $userid WHERE TripID = $approveTrip");
+        $target = $conn->query("SELECT * FROM Trip t WHERE TripID = $approveTrip")->fetch_assoc()["UserID"];
         if ($success) {
+            create_notification("$username approved your trip!", $target);
             echo "
                 <script>
                     alert('Approved the trip!');

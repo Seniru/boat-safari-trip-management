@@ -2,6 +2,7 @@
     $restrict_page = "support_agent";
     
     require("auth.php");
+    require("libs/notifications.php");
 
     $query_params = NULL;
     parse_str($_SERVER["QUERY_STRING"], $query_params);
@@ -19,6 +20,8 @@
     }
     if ($query_params["action"] == "close") {
         $conn->query("UPDATE Ticket SET Status='Closed' WHERE TicketID=$ticketID");
+        $target = $conn->query("SELECT * FROM Ticket t WHERE TicketID = $ticketID")->fetch_assoc()["UserID"];
+        create_notification("$username replied to your ticket!", $target);
         echo "
                 <script>
                     alert('Ticket closed!');

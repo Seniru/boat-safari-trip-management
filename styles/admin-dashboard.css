@@ -84,3 +84,8 @@ h1 {
     right: 10%;
     padding-bottom: 15px;
 }
+
+#latest-trip {
+    display: inline-block !important;
+    vertical-align: top;
+}

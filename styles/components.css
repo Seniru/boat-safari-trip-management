@@ -108,10 +108,15 @@ header > #header-user-profile > .profile-image {
     right: 4px;
     top: 25px;
 	display: none;
+	background-color: #839790;
+	border-radius: 5px;
+	box-shadow: 0px 4px 6px 0px rgba(0,0,0,.25);
+	padding: 15px;
 }
 
+
 #profile-options > ul {
-    list-style-type: none;
+	list-style-type: none;
     padding: 0;
     margin: 5px;
 }
@@ -132,6 +137,29 @@ header > #header-user-profile > .profile-image {
     transform: rotate(45deg);
 }
 
+#notification-box {
+	position: fixed;
+	right: 120px;
+	top: 70px;
+	width: 250px;
+	z-index: 1000;
+	display: none;
+	background-color: #839790;
+	border-radius: 5px;
+	box-shadow: 0px 4px 6px 0px rgba(0,0,0,.25);
+	padding: 15px;
+}
+
+#notification-box::before {
+	content: " ";
+    background-color: #839790;
+    position: fixed;
+    right: 153px;
+    top: 66px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+}
 /* footer style */
 footer {
 	margin-top: 10px;
@@ -382,4 +410,19 @@ textarea {
     position: absolute;
     right: 40px;
     font-weight: 200;
+}
+
+#notification-count {
+	color: white;
+    background-color: red;
+    border-radius: 19px;
+    width: 18px;
+    height: 18px;
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    bottom: 18px;
+    right: 10px;
 }
