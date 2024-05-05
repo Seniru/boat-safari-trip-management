@@ -98,6 +98,16 @@
         header("Location: logout.php");
     }
 
+    if(isset($_GET["delete-trip"])){
+
+        $TripID = $_GET["delete-trip"];
+        echo $TripID;
+        $conn->query("DELETE FROM TripFacilities WHERE TripID=$TripID");
+        $conn->query("DELETE FROM UserTripReview WHERE TripID=$TripID");
+        $conn->query("DELETE FROM Trip WHERE TripID=$TripID");
+
+    }
+
     function createReview($trip, $rating, $review) {
         global $conn, $userid;
         $set = array();
@@ -281,6 +291,8 @@
                             {$ongoing_trip["BoatTypeName"]}<br><br>
                             <i class='fa-regular fa-calendar'></i>
                             Upcoming <b>{$ongoing_trip["DateTime"]}</b>
+                            <a href='user-profile.php?delete-trip={$ongoing_trip["TripID"]}'><button>RAMITH</button></a>
+
                         ";
                     }
                 ?>
@@ -336,9 +348,13 @@
                         <br>
                         ";
                     }
+
+                   
                 ?>
             </div>
+
         </section>
+
     </div>
 
     <?php require("./views/footer.php") ?>
