@@ -4,7 +4,6 @@
 
 	<script>
 		function toggleOptions(event) {
-			console.log(event.target)
 			let target = event.target
 			if (target.classList.contains("fa-caret-down")) {
 				// open options
@@ -27,7 +26,7 @@
 		<ul>
 			<li><a class="navbar-link" href="homepage.php">HOME</a></li>
 			<li><a class="navbar-link" href="faq.php">FAQ</a></li>
-			<li><a class="navbar-link" href="">MORE <i class='fa-solid fa-caret-down'></i></a></li>
+			<li><a class="navbar-link" href="customer-support.php">SUPPORT</a></li>
 		</ul>
 	</nav>
 	<div id="header-actions">

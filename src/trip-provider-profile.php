@@ -1,8 +1,9 @@
 <?php
-    $restrict_page = "trip_provider";
+    //$restrict_page = "trip_provider";
     
     require("auth.php");
     require("libs/pagination.php");
+    require("libs/handleProfiles.php");
 
     $_SESSION["old_trip_offset"] = $_SESSION["old_trip_offset"] ?? 0;
     $_SESSION["ongoing_offset"] = $_SESSION["ongoing_offset"] ?? 0;
@@ -13,7 +14,7 @@
     $old_trip_offset = $_SESSION["old_trip_offset"];
     $new_trip_offset = $_SESSION["ongoing_offset"];
     
-    $profile = $conn->query("SELECT * FROM TripProvider WHERE StaffID=$userid")->fetch_assoc();
+    $profile = NULL;
     $old_trips_res = $conn->query("SELECT * FROM Trip t, Location l, BoatType b
         WHERE t.LocationID = l.LocationID AND StaffID=$userid AND t.BoatTypeID = b.BoatTypeID AND DateTime < NOW()
         LIMIT 1
@@ -35,6 +36,32 @@
             echo "<script>alert('Operation failed!')</script>";
         }
     }
+
+    $view_mode = is_viewing_own_profile($userid, $role, $_GET["id"], "trip_provider");
+
+    switch ($view_mode) {
+        case UNAUTHORIZED_VIEW:
+            header("Location: homepage.php");
+            exit();
+            break;
+        case VIEW_OWN_PROFILE:
+            $res = $conn->query("SELECT * FROM TripProvider WHERE StaffID=$userid;");
+            $profile = $res->fetch_assoc();
+            break;
+        case VIEW_OTHER_PROFILE:
+            $res = $conn->query("SELECT * FROM TripProvider WHERE StaffID={$_GET["id"]}");
+            if ($res->num_rows == 0) {
+                echo "<script>
+                    alert('Profile not found!');
+                    window.location.href='homepage.php';
+                </script>";
+                exit();
+            } else {
+                $profile = $res->fetch_assoc();
+            }   
+            break;           
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -149,10 +176,16 @@
                 Trip Provider<br>
                 Gender: <?php echo $gender == "M" ? "Male" : "Female"; ?><br>
                 Age: <?php echo (new DateTime())->diff(new DateTime("{$profile["DateOfBirth"]}"))->y; ?><br><br>
-                <button onclick="changePassword(event, 'trip-provider-profile.php')">
-                    Change password
-                    <i class="fa-solid fa-user-pen"></i><br>
-                </button>
+                <?php
+                    if ($view_mode == VIEW_OWN_PROFILE) {
+                        echo "
+                            <button onclick='changePassword(event, \'trip-provider-profile.php\')'>
+                                Change password
+                                <i class='fa-solid fa-user-pen'></i><br>
+                            </button>
+                        ";
+                    }
+                ?>
                 <br><br>
             </div>
         </section>

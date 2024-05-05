@@ -1,8 +1,9 @@
 <?php
-    $restrict_page = "user";
+    //$restrict_page = "user";
     
     require("auth.php");
     require("libs/pagination.php");
+    require("libs/handleProfiles.php");
 
     $query_params = NULL;
     parse_str($_SERVER["QUERY_STRING"], $query_params);
@@ -44,6 +45,32 @@
         LIMIT 1
         OFFSET $new_trip_offset
     ");
+
+    $view_mode = is_viewing_own_profile($userid, $role, $_GET["id"], "user");
+
+    switch ($view_mode) {
+        case UNAUTHORIZED_VIEW:
+            header("Location: homepage.php");
+            exit();
+            break;
+        case VIEW_OWN_PROFILE:
+            $res = $conn->query("SELECT * FROM User WHERE UserID=$userid;");
+            $profile = $res->fetch_assoc();
+            break;
+        case VIEW_OTHER_PROFILE:
+            $res = $conn->query("SELECT * FROM User WHERE UserID={$_GET["id"]}");
+            if ($res->num_rows == 0) {
+                echo "<script>
+                    alert('Profile not found!');
+                    window.location.href='homepage.php';
+                </script>";
+                exit();
+            } else {
+                $profile = $res->fetch_assoc();
+            }   
+            break;           
+    }
+
 
     // Create/Edit feedback
     if (isset($_POST["post-review"])) {
@@ -202,11 +229,16 @@
                         if (is_null($review)) $review = array();
 
                         echo "<form method='POST' action=''>
-                                <textarea cols='30' name='review-content'>{$review["Content"]}</textarea><br>           
+                                <textarea cols='30' name='review-content'>{$review["Content"]}</textarea><br>";
+
+                        if ($view_mode == VIEW_OWN_PROFILE) {
+                            echo "
                                 <button type='submit' name='post-review'>
-                                    <i class='fa-solid fa-paper-plane'></i> Submit Feedback
-                                </button>
-                            </form>";
+                                <i class='fa-solid fa-paper-plane'></i> Submit Feedback
+                            ";
+                        }
+                                
+                        echo "</button></form>";
 
                         if (!is_null($review)) {
                             $num_stars = $review["Rating"];
@@ -257,10 +289,16 @@
                 <?php echo "{$profile["FirstName"]} {$profile["LastName"]}" ?><br>
                 <?php echo $profile["Email"] ?><br>
                 Gender: <?php echo $profile["Gender"] ?><br><br>
-                <button onclick="changePassword(event, 'user-profile.php')">
-                    Change password
-                    <i class="fa-solid fa-user-pen"></i><br>
-                </a>
+                <?php
+                    if ($view_mode == VIEW_OWN_PROFILE) {
+                        echo "
+                            <button onclick='changePassword(event, \'user-profile.php\')'>
+                                Change password
+                                <i class='fa-solid fa-user-pen'></i><br>
+                            </a>
+                        ";
+                    }
+                ?>
             </div>
         </section>
         <section id="tickets">
