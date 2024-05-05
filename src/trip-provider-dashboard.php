@@ -1,25 +1,25 @@
 <?php
-    $restrict_page = "trip_provider";
-    
-    require("auth.php");
-    require("libs/notifications.php");
+$restrict_page = "trip_provider";
 
-    // approve trip
-    $approveTrip = $_GET["approveTrip"];
-    if (isset($approveTrip)) {
-        $success = $conn->query("UPDATE Trip SET StaffID = $userid WHERE TripID = $approveTrip");
-        $target = $conn->query("SELECT * FROM Trip t WHERE TripID = $approveTrip")->fetch_assoc()["UserID"];
-        if ($success) {
-            create_notification("$username approved your trip!", $target);
-            echo "
+require("auth.php");
+require("libs/notifications.php");
+
+// approve trip
+$approveTrip = $_GET["approveTrip"];
+if (isset($approveTrip)) {
+    $success = $conn->query("UPDATE Trip SET StaffID = $userid WHERE TripID = $approveTrip");
+    $target = $conn->query("SELECT * FROM Trip t WHERE TripID = $approveTrip")->fetch_assoc()["UserID"];
+    if ($success) {
+        create_notification("$username approved your trip!", $target);
+        echo "
                 <script>
                     alert('Approved the trip!');
                     // reload the window
                     window.location.href = 'trip-provider-dashboard.php';
                 </script>
             ";
-        }
     }
+}
 
 ?>
 
@@ -36,9 +36,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!--component styles-->
     <link rel="stylesheet" href="../styles/components.css">
+    <link rel="stylesheet" href="../styles/calendar.css">
     <link rel="stylesheet" href="../styles/trip-provider-dashboard.css">
     <!--font awesomem-->
     <script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
+    <script src="../scripts/calendar.js"></script>
     <title>Dashboard | Trip Provider</title>
 </head>
 
@@ -52,7 +54,7 @@
     <section id="trips">
         <?php
 
-            $trips = $conn->query("SELECT * FROM Trip t, User u, BoatType b, Location l
+        $trips = $conn->query("SELECT * FROM Trip t, User u, BoatType b, Location l
                 WHERE t.UserID = u.UserID
                 AND t.BoatTypeID = b.BoatTypeID
                 AND t.LocationID = l.LocationID
@@ -60,8 +62,8 @@
                 AND StaffID IS NULL
             ");
 
-            while ($trip = $trips->fetch_assoc()) {
-                echo "<div class='container'>
+        while ($trip = $trips->fetch_assoc()) {
+            echo "<div class='container'>
                         <h4 class='trip-id'>Trip #{$trip["TripID"]}</h4>
                         <div class='profile-details'>
                             <img src='../images/user-solid.svg' class='profile-image'>
@@ -88,22 +90,22 @@
                             </a>
                         </div>
                 </div>";
-            }
+        }
         ?>
     </section>
     <br>
     <section id="feedbacks">
         <div class="container">
             <?php
-                // TODO: Display reviews related to provider only
-                $feedbacks = $conn->query("SELECT * FROM User u, Review r, Trip t, UserTripReview utr
+            // TODO: Display reviews related to provider only
+            $feedbacks = $conn->query("SELECT * FROM User u, Review r, Trip t, UserTripReview utr
                     WHERE utr.UserID = u.UserID AND utr.ReviewID = r.ReviewID AND utr.TripID = t.TripID
                     ORDER BY Rand() LIMIT 1
                 ");
 
-                if ($feedbacks->num_rows > 0) {
-                    $feedback = $feedbacks->fetch_assoc();
-                    echo "<div class='profile-details'>
+            if ($feedbacks->num_rows > 0) {
+                $feedback = $feedbacks->fetch_assoc();
+                echo "<div class='profile-details'>
                             <h4>Feedback #{$feedback["ReviewID"]}</h4><br>
                             <img src='../images/user-solid.svg' class='profile-image'>
                             <br>
@@ -116,17 +118,17 @@
                         </div>
                     <div class='feedback-others'>";
 
-                    $num_stars = $feedback["Rating"];
-                    $no_stars = 5 - $num_stars;
-                    for ($i = 0; $i < $num_stars; $i++)
-                        echo "<i class='fa-solid fa-star' style='color: yellow;'></i>";
-                    for ($i = 0; $i < $no_stars; $i++)
-                            echo "<i class='fa-solid fa-star'></i>";
-                    
-                    echo "<br>{$feedback["DateTime"]}</div>";
-                } else {
-                    echo "<h3 style='text-align: center;'>No reviews for you</h3>";
-                }
+                $num_stars = $feedback["Rating"];
+                $no_stars = 5 - $num_stars;
+                for ($i = 0; $i < $num_stars; $i++)
+                    echo "<i class='fa-solid fa-star' style='color: yellow;'></i>";
+                for ($i = 0; $i < $no_stars; $i++)
+                    echo "<i class='fa-solid fa-star'></i>";
+
+                echo "<br>{$feedback["DateTime"]}</div>";
+            } else {
+                echo "<h3 style='text-align: center;'>No reviews for you</h3>";
+            }
             ?>
         </div>
     </section>
@@ -144,7 +146,30 @@
             </div>
         </div>
         <div>
-            <img src="">
+            <script>
+                console.log("hiiii")
+                let dates = [
+                    <?php
+                        $trips = $conn->query("SELECT * FROM Trip WHERE StaffID=$userid");
+                        while ($trip = $trips->fetch_assoc()) {
+                            echo "'{$trip["DateTime"]}',";
+                        }
+                    ?>
+                ]
+                dates = dates.map(function(d) {
+                        let newD = new Date(d)
+                        newD.setHours(0)
+                        newD.setMinutes(0)
+                        newD.setSeconds(0)
+                        return newD.toString()
+                })
+                document.addEventListener("DOMContentLoaded", function() {
+                    loadCalendar(document.getElementById("calendar"), dates)
+                })
+            </script>
+            <div id="calendar">
+
+            </div>
         </div>
         <div>
             <h3>COMMISIONS</h3>

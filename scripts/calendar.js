@@ -37,8 +37,9 @@ function loadCalendar(parent, highlightDates) {
 			// mark today on the calendar
 			if (date == thisDate) td.classList.add("calendar-today")
 			// mark highlighted days on the calendar
-			if (highlightDates.includes(new Date(thisYear, thisMonth, date))) td.classList.add("highlighted-day")
-			td.innerHTML = ((week == 0 && day < monthStartsFrom) || date > datesInMonth) ? "" : date++
+			let outofBounds = (week == 0 && day < monthStartsFrom) || date > datesInMonth
+			if (!outofBounds && highlightDates.includes(new Date(thisYear, thisMonth, date).toString())) td.classList.add("highlighted-day")
+			td.innerHTML = (outofBounds) ? "" : date++
 			calendarHTML += td.outerHTML	
 			
 		}

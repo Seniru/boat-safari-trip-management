@@ -42,12 +42,21 @@
     display: none;
     width: 30%;
     margin: 0.5%;
-    height: 275px;
     display: inline-block;
     vertical-align: top;
-
 }
 
+#info > .container > img {
+    width: 100%;
+}
+
+#calendar {
+    width: 100%;
+}
+
+#calendar > table {
+    margin: auto;
+}
 
 @keyframes fadeInAnimation {
     0% {

@@ -1,27 +1,27 @@
 table.calendar {
-
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
 }
 
-table.calendar > tr {
 
+table.calendar > tbody > tr > th {
+    background-color: black;
+    color: white;
 }
 
-table.calendar > tr > th {
-
+table.calendar > tbody > tr > td {
+    background-color: #414141;
+    color: white;
 }
 
-table.calendar > tr > td {
-
-}
-
-table.calendar > caption {
-
-}
 
 .calendar-today {
-
+    border: 1px solid yellow;
 }
 
 .highlighted-day {
-
+    background: #a79e1e !important;
+    color: black;
+    font-weight: bold;
 }

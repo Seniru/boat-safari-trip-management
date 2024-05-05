@@ -102,3 +102,7 @@ h2, h3 {
     bottom: 10px;
     right: 10px;
 }
+
+table.calendar {
+    margin: auto;
+}

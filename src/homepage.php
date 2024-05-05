@@ -11,20 +11,26 @@
 		<!--component styles-->
 		<link rel="stylesheet" href="../styles/components.css">
         <link rel="stylesheet" href="../styles/slideshow.css">
+        <link rel="stylesheet" href="../styles/calendar.css">
         <link rel="stylesheet" href="../styles/homepage.css">
 		<!--font awesomem-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
         <!--slideshow -->
         <script src="../scripts/slideshow.js"></script>
+        <script src="../scripts/calendar.js"></script>
         <title>Welcome</title>
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const slideContainer = document.getElementById("slideshow")                
                 const slides = slideContainer.getElementsByClassName("slideshow-slide")
+                const calendar = document.getElementById("calendar")
+
                 setInterval(function() {
                     changeSlide(slideContainer, slides, DIRECTION_LEFT)
                 }, 10000)
+
+                loadCalendar(calendar, [])
 
             })
         </script>
@@ -75,20 +81,20 @@
         <section id="info">
             <div class="container">
                 <h3>OUR EVENTS</h3>
-                <img src="/">
+                <img src="../images/slideshow-00.jpg">
                 <br>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi tenetur doloremque quidem sed obcaecati aut quisquam pariatur veniam, itaque accusantium iste consequuntur reprehenderit. Animi ex totam aut perferendis magni recusandae.</p>
             </div>
             <div class="container">
                 <h3>POPULAR RIDES</h3>
-                <img src="/">
+                <img src="../images/route.jpg">
                 <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing el0it. Velit, quod? Cumque, ipsa! Porro culpa minus tempore temporibus fuga nisi! Fugiat fuga eius sed assumenda quia alias repellendus excepturi voluptate incidunt.</p>
             </div>
             <div class="container">
                 <h3>SPECIAL OFFERS</h3>
                 <!--TODO: replace image with actual calendar-->
-                <img src="/">
+                <div id="calendar"></div>
                 <br>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor possimus suscipit eius optio ut consequatur animi nemo fugiat error, nam quam aspernatur magnam, ea doloribus. Nulla inventore esse repellendus ex.</p>
             </div>
