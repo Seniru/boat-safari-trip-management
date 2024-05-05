@@ -8,12 +8,11 @@
         $ContactNumber=$_POST["Contact Number"];
         $type=$_POST["type"];
         $subject=$_POST["Subject"];
-        $content=$_POST["Content"];
+        $content=$_POST["content"];
 
-        $success = $conn->query("INSERT INTO Ticket VALUES(NULL,'Open','$subject','$type','$content','Now()',$userid,NULL);");
+        $success = $conn->query("INSERT INTO Ticket VALUES(NULL,'Open','$subject','$type','$content',Now(),$userid,NULL);");
         if ($success) {
             echo"<script>alert('Ticket created!');</script>";
-
         } 
     }
 ?>
@@ -24,6 +23,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../images/favicon.ico" type="image/ico">
         <!--google fonts-->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

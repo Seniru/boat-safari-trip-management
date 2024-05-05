@@ -47,7 +47,7 @@
 						style='cursor: pointer; position: fixed; right: 16px; top: 5px'>
 					</i><br>
 					<img src='../images/user-solid.svg' class='profile-image'>
-					<div id='profile-options' class='container'>
+					<div id='profile-options' style='background-color: #839790;	border-radius: 5px;	box-shadow: 0px 4px 6px 0px rgba(0,0,0,.25); padding: 15px;'>
 						<ul>
 							<li>
 								<a href='";
