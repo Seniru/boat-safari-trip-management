@@ -93,6 +93,12 @@
         }
     }
 
+    if(isset($_GET["delete-ticket"])){
+        $ticketID=$_GET["delete-ticket"];
+        $conn->query("DELETE FROM Ticket WHERE TicketID=$ticketID");
+        echo"<script>alert('Ticket Deleted')</script>";
+    }
+
     function createReview($trip, $rating, $review) {
         global $conn, $userid;
         $set = array();
@@ -323,6 +329,7 @@
                             <a href='user-profile.php?ticket-pre'><button class='arrow-left'>&lt;</button></a>
                             <a href='user-profile.php?ticket-next'><button class='arrow-right'>&gt;</button></a>
                             <br><br>
+                            <a href='user-profile.php?delete-ticket={$ticket["TicketID"]}'><button>Delete</button></a>
                             <div class='date'>
                                 <i class='fa-regular fa-calendar'></i>
                                 {$ticket["SubmittedDateTime"]}
