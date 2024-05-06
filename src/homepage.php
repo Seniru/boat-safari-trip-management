@@ -60,6 +60,7 @@
             <button class="slide-next">&gt;</button>
             <div class="slide-selector"></div>
         </div>
+        <br>
         <div id="about" class="container">
             <h3>Get to know us</h3>
             <h1>ABOUT US</h1>
