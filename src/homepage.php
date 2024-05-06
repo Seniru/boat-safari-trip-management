@@ -41,19 +41,19 @@
         
         <div id="slideshow" class="slideshow">
             <div class="slideshow-slide">
-                <img src="../images/slideshow-00.jpg">
+                <img src="../images/slideshow-06.jpg">
             </div>
             <div class="slideshow-slide">
-                <img src="../images/slideshow-01.jpg">
+                <img src="../images/slideshow-07.jpg">
             </div>
             <div class="slideshow-slide">
-                <img src="../images/slideshow-02.jpg"> 
+                <img src="../images/slideshow-08.jpg"> 
             </div>
             <div class="slideshow-slide">
-                <img src="../images/slideshow-03.jpg">
+                <img src="../images/slideshow-09.jpg">
             </div>
             <div class="slideshow-slide">
-                <img src="../images/slideshow-04.webp">
+                <img src="../images/slideshow-10.jpg">
             </div>
 
             <button class="slide-pre">&lt;</button>
@@ -81,20 +81,20 @@
         <section id="info">
             <div class="container">
                 <h3>OUR EVENTS</h3>
-                <img src="../images/slideshow-00.jpg">
+                <img src="../images/info-pic-01.jpg">
                 <br>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi tenetur doloremque quidem sed obcaecati aut quisquam pariatur veniam, itaque accusantium iste consequuntur reprehenderit. Animi ex totam aut perferendis magni recusandae.</p>
             </div>
             <div class="container">
                 <h3>POPULAR RIDES</h3>
-                <img src="../images/route.jpg">
+                <img src="../images/info-pic-02.jpg">
                 <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing el0it. Velit, quod? Cumque, ipsa! Porro culpa minus tempore temporibus fuga nisi! Fugiat fuga eius sed assumenda quia alias repellendus excepturi voluptate incidunt.</p>
             </div>
             <div class="container">
                 <h3>SPECIAL OFFERS</h3>
-                <!--TODO: replace image with actual calendar-->
-                <div id="calendar"></div>
+                <img src="../images/info-pic-03.jpg">
+                
                 <br>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor possimus suscipit eius optio ut consequatur animi nemo fugiat error, nam quam aspernatur magnam, ea doloribus. Nulla inventore esse repellendus ex.</p>
             </div>
@@ -105,23 +105,23 @@
             <hr><br><br>
             <div id="review-slideshow" class="slideshow">
             <div class="slideshow-slide">
-                <img src="../images/slideshow-00.jpg">
+                <img src="../images/slideshow-07.jpg">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto fugit aliquam velit atque ex explicabo voluptas similique rerum earum labore qui, inventore maiores ullam quibusdam? Delectus excepturi eveniet natus sed.</p>
             </div>
             <div class="slideshow-slide">
-                <img src="../images/slideshow-01.jpg">
+                <img src="../images/slideshow-06.jpg">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fuga ex nemo temporibus esse eius quod excepturi delectus molestiae, voluptatum aperiam in natus ducimus nulla minus nostrum? Delectus, alias numquam.</p>
             </div>
             <div class="slideshow-slide">
-                <img src="../images/slideshow-02.jpg">
+                <img src="../images/slideshow-08.jpg">
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum asperiores eligendi aut quae ut, architecto soluta accusantium maxime nam recusandae optio maiores dolores, quisquam quam ad dolor sapiente pariatur earum?</p>
             </div>
             <div class="slideshow-slide">
-                <img src="../images/slideshow-03.jpg">
+                <img src="../images/slideshow-09.jpg">
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium sint consequuntur, veritatis laudantium ut minus, id tenetur sequi blanditiis dolores cumque. Accusantium aut corporis non dolorem. Sit possimus laboriosam ipsum?</p>
             </div>
             <div class="slideshow-slide">
-                <img src="../images/slideshow-04.webp">
+                <img src="../images/slideshow-10.jpg">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid consequuntur voluptas odit quod corrupti corporis, accusamus sunt delectus modi dolore, vero sequi cupiditate eius. Culpa asperiores ratione harum unde et!</p>
             </div>
 
