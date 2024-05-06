@@ -40,6 +40,7 @@
 		<link rel="stylesheet" href="../styles/components.css">
 		<!--font awesomem-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
+        <script src="../scripts/signup-validation.js"></script>
         <title>Sign up</title>
         <style>
             h2 {
@@ -96,29 +97,29 @@
             <h2>Sign up</h2>
             <div class="container">
                 <img id="signup-img" src="../images/slideshow-00.jpg">
-                <form method="POST" action="">
+                <form method="POST" action="" onsubmit="return validate()">
                     Name:<br>
                     <div id="name-container">
-                        <input type="text" name="firstname" placeholder="First name">
-                        <input type="text" name="lastname" placeholder="Last name">
+                        <input type="text" name="firstname" id="firstname" placeholder="First name" required>
+                        <input type="text" name="lastname" id="lastname" placeholder="Last name" required>
                     </div>
                     Date of Birth<br>
-                    <input type="date" name="dob"><br>
+                    <input type="date" name="dob" id="dob" required><br>
                     Email<br>
-                    <input type="email" name="email" placeholder="Email address"><br>
+                    <input type="email" name="email" placeholder="Email address" required><br>
                     Phone number<br>
-                    <input type="tel" name="tel" placeholder="Phone number"><br>
+                    <input type="tel" name="tel" placeholder="Phone number" id="tel" required><br>
                     Gender<br>
-                    <select name="gender">
+                    <select name="gender" required>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
                     <br>
                     Password<br>
-                    <input type="password" name="password" id="password" placeholder="Enter your password"><br>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required><br>
                     Re-enter password<br>
-                    <input type="password" id="password-conf" placeholder="Re-enter password"><br><br>
-                    <input type="submit" name="submit" value="Sign up">
+                    <input type="password" id="password-conf" placeholder="Re-enter password" required><br><br>
+                    <input type="submit" name="submit" value="Sign up" onclick="">
                 </form>
             </div>
         </div>
