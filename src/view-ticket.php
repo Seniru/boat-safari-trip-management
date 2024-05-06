@@ -66,6 +66,9 @@
                color:white;
                margin-left:20px
             }
+            h3 {
+                display: inline-block;
+            }
             .container{
                 margin-left:20px;
                 margin-right:20px
@@ -79,15 +82,21 @@
         <h2>Ticket #<?php echo $ticketID; ?> </h2>
         
         <div class="container">
-        <h4>Name</h4>
+        <i class="fa-solid fa-user"></i>
+        <h3>Name: </h3>
         <?php echo $ticket["FirstName"]; ?>
-        <h4>Email</h4>
+        <br>
+        <i class="fa-solid fa-envelope"></i>
+        <h3>Email:</h3>
         <?php echo $ticket["Email"]; ?>
-        <h4>Contact Number</h4>
+        <br>
+        <i class="fa-solid fa-phone-volume"></i>
+        <h3>Contact Number:</h3>
         <?php echo $ticket["PhoneNumber"]; ?>
-        <h4>Request/Inquiry Type</h4>
+        <br>
+        <h3>Request/Inquiry Type</h3>
         <?php echo $ticket["InquiryType"]; ?>
-        <h1> <?php echo $ticket["Subject"]; ?> </h1>
+        <h3> <?php echo $ticket["Subject"]; ?> </h3>
         <p> <?php echo $ticket["Message"]; ?> </p>
         </div><br><br>
 
