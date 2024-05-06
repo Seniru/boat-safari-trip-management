@@ -83,20 +83,21 @@
         
         <div class="container">
         <i class="fa-solid fa-user"></i>
-        <h3>Name: </h3>
+        <h3>Name : </h3>
         <?php echo $ticket["FirstName"]; ?>
         <br>
         <i class="fa-solid fa-envelope"></i>
-        <h3>Email:</h3>
+        <h3>Email :</h3>
         <?php echo $ticket["Email"]; ?>
         <br>
         <i class="fa-solid fa-phone-volume"></i>
-        <h3>Contact Number:</h3>
+        <h3>Contact Number :</h3>
         <?php echo $ticket["PhoneNumber"]; ?>
         <br>
-        <h3>Request/Inquiry Type</h3>
+        <h3>Request/Inquiry Type :</h3>
         <?php echo $ticket["InquiryType"]; ?>
-        <h3> <?php echo $ticket["Subject"]; ?> </h3>
+        <br>
+        <h3><u><?php echo $ticket["Subject"]; ?> </u></h3>
         <p> <?php echo $ticket["Message"]; ?> </p>
         </div><br><br>
 
