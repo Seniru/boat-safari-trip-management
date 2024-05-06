@@ -127,8 +127,10 @@
         $conn->query("DELETE FROM TripFacilities WHERE TripID=$TripID");
         $conn->query("DELETE FROM UserTripReview WHERE TripID=$TripID");
         $conn->query("DELETE FROM Trip WHERE TripID=$TripID");
-        echo "<script>alert('Deleted trip!')</script>";
-
+        echo "<script>
+            alert('Deleted trip!')
+            window.location.href = 'user-profile.php'
+        </script>";
 
     }
 
@@ -321,8 +323,8 @@
                             {$ongoing_trip["BoatTypeName"]}<br><br>
                             <i class='fa-regular fa-calendar'></i>
                             Upcoming <b>{$ongoing_trip["DateTime"]}</b>
-                            <a href='user-profile.php?delete-trip={$ongoing_trip["TripID"]}'><button>RAMITH</button></a>
-
+                            <br>
+                            <a href='user-profile.php?delete-trip={$ongoing_trip["TripID"]}'><button>Delete trip</button></a>
                         ";
                     }
                 ?>

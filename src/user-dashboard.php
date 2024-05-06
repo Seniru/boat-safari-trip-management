@@ -21,6 +21,7 @@
     <!--font awesomem-->
     <script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
     <script src="../scripts/user-dashboard.js"></script>
+    <script src="../scripts/trip-validation.js"></script>
     <title>User Dashboard</title>
 </head>
 
@@ -71,10 +72,10 @@
         ?>
     </section>
 
-    <form method="POST" action="payments.php">
+    <form method="POST" action="payments.php" onsubmit="return validate()">
         Search Location
         <br>
-        <select name="location" id="location" onchange="createReport()"> 
+        <select name="location" id="location" onchange="createReport()" required> 
             <?php
                 $res = $conn->query("SELECT * FROM Location");
                 while ($location = $res->fetch_assoc()) {
@@ -94,7 +95,7 @@
             <tr>
                 <td>
                     <br>
-                    <input type="date" name="date" id="date" onchange="createReport()"> 
+                    <input type="date" name="date" id="date" onchange="createReport()" required> 
                 </td>
                 <td>
                     <br>
@@ -106,14 +107,14 @@
                 </td>
                 <td>
                     <br>    
-                    <input type="time" name="time" id="time" onchange="createReport()">
+                    <input type="time" name="time" id="time" onchange="createReport()" required>
                 </td>
                 <td>
                     Age 12+
-                    <input type="number" name="passengers-o12" id="passengers-o12" onchange="createReport()">
+                    <input type="number" name="passengers-o12" id="passengers-o12" onchange="createReport()" required>
                     <br>
                     Age 0-12
-                    <input type="number" name="passengers-u12" id="passengers-u12" onchange="createReport()">
+                    <input type="number" name="passengers-u12" id="passengers-u12" onchange="createReport()" required>
                 </td>
                 <td>
                     <br>

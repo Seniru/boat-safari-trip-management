@@ -40,7 +40,7 @@
 	</script>
 
 	<div id="header-logo">
-		<img src="../images/logo.jpeg" alt="logo" width="110px" height="110px">
+		<img src="../images/logo.jpg" alt="logo" width="110px" height="110px">
 	</div>
 	<nav id="header-nav">
 		<ul>

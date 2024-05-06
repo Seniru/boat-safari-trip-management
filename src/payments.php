@@ -51,6 +51,7 @@
         <link rel="stylesheet" href="../styles/components.css">
         <!--font awesomem-->
         <script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
+        <script src="../scripts/payment-validation.js"></script>
         <title>Payment</title>
 
         <style>
@@ -157,7 +158,7 @@
 
         <br>
         <h1>PAYMENT AND CONFIRMATION</h1>
-        <form class="container" method="POST" action="">
+        <form class="container" method="POST" action="" onsubmit="return validate()">
 
             <br>
             <h2 id="caption"> Card Details </h2>
@@ -167,10 +168,10 @@
             <input type="text" name="cardnumber" id="cdNO" required><br>
 
             <h3>Expriy Date:</h3>
-            <input type="text" name="exdate" required><br>
+            <input type="text" name="exdate" id="exdate" required><br>
 
             <h3>Security Code:</h3>
-            <input type="text" name="securitycode" required><br><br>
+            <input type="text" name="securitycode" id="cvv" required><br><br>
 
             <label>
                 <input type="radio" name="paymentmode" value="Paypal">
