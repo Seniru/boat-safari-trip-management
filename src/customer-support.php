@@ -32,6 +32,7 @@
 		<link rel="stylesheet" href="../styles/components.css">
 		<!--font awesomem-->
 		<script src="https://kit.fontawesome.com/36fdbb8e6c.js" crossorigin="anonymous"></script>
+        <script src="../scripts/support-validation.js"></script>
         <title>Document</title>
         <style>
             textarea {
@@ -75,7 +76,7 @@
         <!-- body content -->
         <div class="container">
             <h1>Customer Support Page</h1>
-            <form method="POST" action="">
+            <form method="POST" action="" onsubmit="return validate()">
             <label for="name">Name:</label><br>
             <input type="text" id="name" Name="name" placeholder="Enter your name"><br><br>
             <label for="Email">Email:</label><br>
@@ -89,9 +90,9 @@
             </select>
             <br><br>
             <label for="Subject">Subject:</label><br>
-            <input type="text" id="Subject" name="Subject"placeholder="Type here"><br><br>
+            <input type="text" id="Subject" name="Subject"placeholder="Type here" required><br><br>
             <label for="Message">Message:</label><br>
-            <textarea name="content" rows="8" cols="80"placeholder="Type here"></textarea><br>
+            <textarea id="content" name="content" rows="8" cols="80"placeholder="Type here" required></textarea><br>
             <input type="submit" value="Submit" name="submit">
         </form>
         </div>
