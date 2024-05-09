@@ -9,7 +9,6 @@ function validate(event) {
 
     // validate date of birth
     let dob = document.getElementById("dob").value
-    console.log(dob)
     if (!(/\d{4,4}-\d{2,2}-\d{2,2}/.test(dob))) {
         alert("Invalid date")
         return false

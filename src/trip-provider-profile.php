@@ -174,12 +174,12 @@
                 <img class="profilepicture" src="../images/user-solid.svg"><br>
                 <?php echo "{$profile["Name"]} {$profile["LastName"]}" ?><br>
                 Trip Provider<br>
-                Gender: <?php echo $gender == "M" ? "Male" : "Female"; ?><br>
+                Gender: <?php echo $profile["Gender"] == "M" ? "Male" : "Female"; ?><br>
                 Age: <?php echo (new DateTime())->diff(new DateTime("{$profile["DateOfBirth"]}"))->y; ?><br><br>
                 <?php
                     if ($view_mode == VIEW_OWN_PROFILE) {
                         echo "
-                            <button onclick='changePassword(event, \'trip-provider-profile.php\')'>
+                            <button onclick=\"changePassword(event, 'trip-provider-profile.php')\">
                                 Change password
                                 <i class='fa-solid fa-user-pen'></i><br>
                             </button>

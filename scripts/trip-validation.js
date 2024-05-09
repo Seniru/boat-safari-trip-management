@@ -14,5 +14,4 @@ function validate() {
         alert("Passenger count can't be a negative value")
         return false
     }
-    return false
 }

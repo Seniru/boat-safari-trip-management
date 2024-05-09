@@ -85,7 +85,7 @@
                 <?php
                     if ($view_mode == VIEW_OWN_PROFILE) {
                         echo "
-                            <button onclick='changePassword(event, \'support-agent-profile.php\')'>
+                            <button onclick=\"changePassword(event, 'support-agent-profile.php')\">
                                 Change password
                                 <i class='fa-solid fa-user-pen'></i><br>
                             </button>

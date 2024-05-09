@@ -28,7 +28,14 @@
             NULL, '$date $time', $passengers_o12, $passengers_u12, $amount, '$payment_mode', $userid, NULL, $locationID, $boattypeID
         )");
 
-        header("Location: user-dashboard.php");
+        if ($success) {
+            echo "
+                <script>
+                    alert('Trip created successfully!')
+                    window.location.href = 'user-dashboard.php'
+                </script>
+            ";
+        }
 
     } else {
         header("Location: user-dashboard.php");

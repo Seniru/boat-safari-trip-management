@@ -107,7 +107,7 @@
     // Delete ticket
     if(isset($_GET["delete-ticket"])){
         $ticketID=$_GET["delete-ticket"];
-        //$conn->query("DELETE FROM Ticket WHERE TicketID=$ticketID");
+        $conn->query("DELETE FROM Ticket WHERE TicketID=$ticketID");
         echo "<script>
             alert('Ticket Deleted')
             // refresh
