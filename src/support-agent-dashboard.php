@@ -8,7 +8,7 @@
         $res = $conn->query("SELECT * FROM Ticket t, User u WHERE t.UserID = u.UserID AND Status = '$status';");
 
         if ($res->num_rows == 0) {
-            echo "<center><h1>No tickets</h1></center>";
+            echo "<center><h1>No $status tickets</h1></center>";
         } else {
         while ($row = $res->fetch_assoc()) {
             echo "

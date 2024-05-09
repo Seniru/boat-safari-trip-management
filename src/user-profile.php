@@ -324,8 +324,10 @@
                             <i class='fa-regular fa-calendar'></i>
                             Upcoming <b>{$ongoing_trip["DateTime"]}</b>
                             <br>
-                            <a href='user-profile.php?delete-trip={$ongoing_trip["TripID"]}'><button>Delete trip</button></a>
                         ";
+                        if ($view_mode == VIEW_OWN_PROFILE) {
+                            echo "<a href='user-profile.php?delete-trip={$ongoing_trip["TripID"]}'><button>Delete trip</button></a>";
+                        }
                     }
                 ?>
                 
@@ -347,9 +349,12 @@
                             </button>
                         ";
                     }
+                    if ($view_mode == VIEW_OWN_PROFILE) {
+                        echo "<a href='user-profile.php?delete-account'><button>Delete user account</button></a>";
+
+                    }
                 ?>
                 <br>
-                <a href="user-profile.php?delete-account"><button>Delete user account</button></a>
             </div>
         </section>
         <section id="tickets">
@@ -374,13 +379,16 @@
                             <a href='user-profile.php?ticket-pre'><button class='arrow-left'>&lt;</button></a>
                             <a href='user-profile.php?ticket-next'><button class='arrow-right'>&gt;</button></a>
                             <br><br>
-                            <a href='user-profile.php?delete-ticket={$ticket["TicketID"]}'><button>Delete</button></a>
-                            <div class='date'>
-                                <i class='fa-regular fa-calendar'></i>
-                                {$ticket["SubmittedDateTime"]}
-                            </div>
-                        <br>
                         ";
+                        if ($view_mode == VIEW_OWN_PROFILE) {
+                            echo "<a href='user-profile.php?delete-ticket={$ticket["TicketID"]}'><button>Delete</button></a>
+                                <div class='date'>
+                                    <i class='fa-regular fa-calendar'></i>
+                                    {$ticket["SubmittedDateTime"]}
+                                </div>
+                            <br>";
+
+                        }
                     }
 
                    

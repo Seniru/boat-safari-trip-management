@@ -59,7 +59,7 @@
                 <div class='container'>
                         <div class='user-details'>" .
                             ($table == "User" ? $row["FirstName"] : $row["Name"]) . "<br>
-                            <img src='./images/user-solid.svg' class='profile-image'><br>
+                            <img src='../images/user-solid.svg' class='profile-image'><br>
                             {$clean_names[$table]}
                         </div>
                         <div class='profile-link'>

@@ -13,7 +13,7 @@
             if ($viewer_role == $target_role) return VIEW_OWN_PROFILE;
             return UNAUTHORIZED_VIEW;
         } else {
-            if ($viewer_id == $target_id) return VIEW_OWN_PROFILE;
+            if ($viewer_id == $target_id && $viewer_role == $target_role) return VIEW_OWN_PROFILE;
             return VIEW_OTHER_PROFILE;
         }
     }
