@@ -78,9 +78,9 @@ if (isset($approveTrip)) {
                             <i class='fa-solid fa-sailboat'></i>
                             {$trip["BoatTypeName"]}<br>
                             Passengers:<br>
-                            &emsp;&emsp;Over 12: 5 
+                            &emsp;&emsp;Over 12: {$trip["PassengersOver12"]}
                             <br>
-                            &emsp;&emsp;Under 12: 3
+                            &emsp;&emsp;Under 12: {$trip["PassengersUnder12"]}
                         </div>
                         <br><br>
                         <div class='trip-actions'>

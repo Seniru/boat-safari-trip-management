@@ -61,7 +61,7 @@
 		<i class="fa-solid fa-bell open" style="color: white; margin-left: 15px; cursor: pointer;" onclick="toggleNotifications(event)"></i>
 
 		<?php
-			if ($loggedin) {
+			if ($loggedin && $role == "user") {
 				$notifications = $conn->query("SELECT * FROM Notification WHERE UserID=$userid AND `Read` = FALSE");
 				if ($notifications->num_rows > 0) {
 					echo "<span id='notification-count'>$notifications->num_rows</span>";
