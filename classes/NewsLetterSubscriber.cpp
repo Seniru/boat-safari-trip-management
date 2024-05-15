@@ -1,9 +1,17 @@
+#include <iostream>
 #include "NewsLetterSubscriber.h"
 
-void NewsLetterSubscriber::setEmail(char *pEmail) {
+using namespace std;
+
+NewsLetterSubscriber::NewsLetterSubscriber(string pEmail) {
     email = pEmail;
+    cout << "Created a newsletter subscriber instance! [Email: " << email << "]\n";
 }
 
-char *NewsLetterSubscriber::getEmail() {
+void NewsLetterSubscriber::setEmail(string newEmail) {
+    email.assign(newEmail);
+}
+
+string NewsLetterSubscriber::getEmail() {
     return email;
 }

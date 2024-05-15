@@ -1,4 +1,4 @@
-SRC = main.cpp NewsLetterSubscriber.cpp
+SRC = main.cpp CustomerSupportAgent.cpp Newsletter.cpp NewsLetterSubscriber.cpp Notification.cpp Package.cpp RegisteredUser.cpp Review.cpp systemAdministrator.cpp Ticket.cpp Trip.cpp TripProvider.cpp User.cpp
 
 all: app
 

@@ -1,7 +1,14 @@
+#pragma once
+
+#include <iostream>
+
+using namespace std;
+
 class NewsLetterSubscriber {
     private:
-        char *email;
+        string email;
     public:
-        void setEmail(char *pEmail);
-        char *getEmail();
+        string getEmail();
+        void setEmail(string newEmail);
+        NewsLetterSubscriber(string email);
 };
