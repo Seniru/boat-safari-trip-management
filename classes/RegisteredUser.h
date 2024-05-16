@@ -23,7 +23,7 @@ class RegisteredUser : public User {
         Trip *viewAllTrips();
         void deleteTrip(Trip trip);
 
-        Ticket createTicket(string subject, string message, int inquiryType);
+        Ticket createTicket(string subject, string inquiryType, string message);
         Ticket *viewAllTickets();
         void deleteTicket(Ticket ticket);
 

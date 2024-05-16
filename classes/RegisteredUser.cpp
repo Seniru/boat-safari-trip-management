@@ -1,4 +1,5 @@
 #include <iostream>
+#include "User.h"
 #include "RegisteredUser.h"
 #include "Trip.h"
 #include "Ticket.h"
@@ -40,9 +41,9 @@ void RegisteredUser::deleteTrip(Trip trip) {
     // ...
 }
 
-Ticket RegisteredUser::createTicket(string subject, string message, int inquiryType) {
+Ticket RegisteredUser::createTicket(string subject, string inquiryType, string message) {
+    Ticket ticket(*this, subject, inquiryType, message);
     // ...
-    Ticket ticket;
     return ticket;
 }
 

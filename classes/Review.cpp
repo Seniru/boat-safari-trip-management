@@ -8,7 +8,7 @@ Review::Review(int pReviewID, RegisteredUser pUser, string pReview, int pRating)
     reviewID = pReviewID;
     review = pReview;
     rating = pRating;
-    cout << "Created a review instance! [ID: " << reviewID << "]";
+    cout << "Created a review instance! [ID: " << reviewID << "]\n";
 }
 
 int Review::getReviewID() {
