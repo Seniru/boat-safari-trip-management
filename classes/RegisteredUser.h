@@ -10,19 +10,12 @@ using namespace std;
 
 class RegisteredUser : public User {
     private:
-        int userID;
         string phoneNumber;
-        string dob;
         string email;
-        int gender;
 
     public:
-
-        int getUserID();
         void setPhoneNumber(string newPhoneNumber);
-        void setDOB(string newDOB);
         void setEmail(string newEmail);
-        void setGender(int newGender);
         void displayDetails();
 
         Trip createTripFromPackage(Package package, string dateTime, int passengersO12, int passengersU12);

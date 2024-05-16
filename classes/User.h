@@ -9,14 +9,20 @@ class User {
         int id;
         string username;
         string password;
+        string dob;
+        int gender;
         bool loggedin;
     public:
-        string getUsername();
-        int getID();
-        bool isLoggedIn();
-        void setUsername(string newUsername);
-        void setPassword(string newPassword);
-        void setLoggedIn(bool loggedinStatus);
-        void login();
+        virtual string getUsername();
+        virtual int getID();
+        virtual string getDOB();
+        virtual int getGender();
+        virtual bool isLoggedIn();
+        virtual void setUsername(string newUsername);
+        virtual void setPassword(string newPassword);
+        virtual void setDOB(string newDOB);
+        virtual void setGender(int newGender);
+        virtual void setLoggedIn(bool loggedinStatus);
+        virtual void login();
         User(int pID, string pUsername, string pPassword);
 };

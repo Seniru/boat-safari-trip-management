@@ -36,5 +36,5 @@ void Review::setRating(int newRating) {
 }
 
 void Review::displayReview() {
-    cout << "Review ID: " << reviewID << "\nUser ID: " << user.getUserID() << endl;
+    cout << "Review ID: " << reviewID << "\nUser ID: " << user.getID() << endl;
 }

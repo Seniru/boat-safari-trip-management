@@ -1,28 +1,17 @@
 #include <iostream>
 #include "RegisteredUser.h"
 #include "Trip.h"
+#include "Ticket.h"
 #include "Package.h"
 
 using namespace std;
-
-int RegisteredUser::getUserID() {
-    return userID;
-}
 
 void RegisteredUser::setPhoneNumber(string newPhoneNumber) {
     phoneNumber.assign(newPhoneNumber);
 }
 
-void RegisteredUser::setDOB(string newDOB) {
-    dob.assign(newDOB);
-}
-
 void RegisteredUser::setEmail(string newEmail) {
     email.assign(newEmail);
-}
-
-void RegisteredUser::setGender(int newGender) {
-    gender = newGender;
 }
 
 void RegisteredUser::displayDetails() {
