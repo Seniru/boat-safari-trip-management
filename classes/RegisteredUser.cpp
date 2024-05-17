@@ -47,7 +47,7 @@ void RegisteredUser::deleteTrip(Trip *trip) {
 
 Ticket *RegisteredUser::createTicket(string subject, string inquiryType, string message) {
     // ...
-    Ticket *ticket;
+    Ticket *ticket = new Ticket(this, subject, inquiryType, message);
     return ticket;
 }
 

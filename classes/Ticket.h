@@ -1,18 +1,21 @@
 #pragma once
 
 #include <iostream>
-#include "User.h"
+
+using namespace std;
+
+class RegisteredUser;  // Forward declaration
 
 class Ticket {
     private:
-        User *user;
+        RegisteredUser *user;
         bool opened;
         string subject;
         string inquiryType;
         string message;
         string submittedDateTime;
     public:
-        User *getUser();
+        RegisteredUser *getUser();
         bool getIsOpened();
         string getSubject();
         string getInquiryType();
@@ -23,6 +26,5 @@ class Ticket {
         void setInquiryType(string newInquiryType);
         void setSubmittedDateTime(string newDateTime);
         void displayInformation();
-        Ticket(User *pUser, string pSubject, string pInquiryType, string pMessage);
-
+        Ticket(RegisteredUser *pUser, string pSubject, string pInquiryType, string pMessage);
 };

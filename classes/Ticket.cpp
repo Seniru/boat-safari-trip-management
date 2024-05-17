@@ -1,10 +1,9 @@
-#include <iostream>
 #include "Ticket.h"
-#include "User.h"
+#include "RegisteredUser.h"
 
 using namespace std;
 
-Ticket::Ticket(User *pUser, string pSubject, string pInquiryType, string pMessage) : user (pUser) {
+Ticket::Ticket(RegisteredUser *pUser, string pSubject, string pInquiryType, string pMessage) : user(pUser) {
     subject = pSubject;
     inquiryType = pInquiryType;
     message = pMessage;
@@ -13,7 +12,7 @@ Ticket::Ticket(User *pUser, string pSubject, string pInquiryType, string pMessag
     cout << "Created a ticket instance!\n";
 }
 
-User *Ticket::getUser() {
+RegisteredUser *Ticket::getUser() {
     return user;
 }
 
@@ -54,6 +53,5 @@ void Ticket::setSubmittedDateTime(string newDateTime) {
 }
 
 void Ticket::displayInformation() {
-    // ...
     cout << "User: " << user->getID() << "\nType: " << inquiryType << "\n" << subject << "\n\n" << message << endl;
 }

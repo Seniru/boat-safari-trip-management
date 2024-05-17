@@ -4,9 +4,10 @@
 #include "User.h"
 #include "Package.h"
 #include "Trip.h"
-#include "Ticket.h"
 
 using namespace std;
+
+class Ticket;
 
 class RegisteredUser : public User {
     private:
