@@ -1,5 +1,10 @@
 #pragma once
+
+#include<iostream>
 #include "Trip.h"
+
+using namespace std;
+
 class Package {
      private:
          int PackageID;
