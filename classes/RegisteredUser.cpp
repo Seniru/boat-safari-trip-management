@@ -7,6 +7,10 @@
 
 using namespace std;
 
+RegisteredUser::~RegisteredUser() {
+    cout << "Deleted registered user instance." << endl;
+}
+
 void RegisteredUser::setPhoneNumber(string newPhoneNumber) {
     phoneNumber.assign(newPhoneNumber);
 }
@@ -19,15 +23,15 @@ void RegisteredUser::displayDetails() {
     // ...
 }
 
-Trip RegisteredUser::createTripFromPackage(Package package, string dateTime, int passengersO12, int passengersU12) {
+Trip *RegisteredUser::createTripFromPackage(Package *package, string dateTime, int passengersO12, int passengersU12) {
     // ...
-    Trip trip;
+    Trip *trip;
     return trip;
 }
 
-Trip RegisteredUser::createTrip(string dateTime, int passengersO12, int PassengersU12) {
+Trip *RegisteredUser::createTrip(string dateTime, int passengersO12, int PassengersU12) {
     // ...
-    Trip trip;
+    Trip *trip;
     return trip;
 }
 
@@ -37,13 +41,13 @@ Trip *RegisteredUser::viewAllTrips() {
     return trips;
 }
 
-void RegisteredUser::deleteTrip(Trip trip) {
+void RegisteredUser::deleteTrip(Trip *trip) {
     // ...
 }
 
-Ticket RegisteredUser::createTicket(string subject, string inquiryType, string message) {
-    Ticket ticket(*this, subject, inquiryType, message);
+Ticket *RegisteredUser::createTicket(string subject, string inquiryType, string message) {
     // ...
+    Ticket *ticket;
     return ticket;
 }
 
@@ -53,10 +57,10 @@ Ticket *RegisteredUser::viewAllTickets() {
     return tickets;
 }
 
-void RegisteredUser::deleteTicket(Ticket ticket) {
+void RegisteredUser::deleteTicket(Ticket *ticket) {
     // ...
 }
 
-void RegisteredUser::addReview(Trip trip, string message, int rating) {
+void RegisteredUser::addReview(Trip *trip, string message, int rating) {
     // ...
 }

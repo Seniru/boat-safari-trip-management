@@ -13,4 +13,5 @@ class SystemAdministrator : public User {
         void sendNewsletter();
 
         SystemAdministrator(int userID, string username, string password) : User(userID, username, password) {};
+        ~SystemAdministrator();
 };

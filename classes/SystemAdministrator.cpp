@@ -1,6 +1,12 @@
 #include <iostream>
 #include "SystemAdministrator.h"
 
+using namespace std;
+
+SystemAdministrator::~SystemAdministrator() {
+    cout << "Deleted System administrator instance." << endl;
+}
+
 User *SystemAdministrator::viewUsers(string name, int accountType) {
     // ...
     User *users;

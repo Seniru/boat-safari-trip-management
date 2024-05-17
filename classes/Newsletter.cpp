@@ -10,6 +10,10 @@ Newsletter::Newsletter(string pTitle, string pContent) {
     cout << "Created a newsletter instance!\n";
 }
 
+Newsletter::~Newsletter() {
+    cout << "Deleted newsletter instance." << endl;
+}
+
 string Newsletter::getTitle() {
     return title;
 }
@@ -28,6 +32,6 @@ void Newsletter::displayNewsletter() {
     // ...
 }
 
-void Newsletter::sendNewsletter(NewsLetterSubscriber subscriber) {
+void Newsletter::sendNewsletter(NewsLetterSubscriber *subscriber) {
     // ...
 }

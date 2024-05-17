@@ -4,17 +4,21 @@
 
 using namespace std;
 
-Notification::Notification(int pNotificationID, const RegisteredUser pUser, string pNotification) : user (pUser) {
+Notification::Notification(int pNotificationID, RegisteredUser *pUser, string pNotification) : user (pUser) {
     notificationID = pNotificationID;
     notification = pNotification;
     cout << "Created a notification instance! [ID: " << notificationID << "]\n";
+}
+
+Notification::~Notification() {
+    cout << "Deleted notification instance." << endl;
 }
 
 int Notification::getNotificationID() {
     return notificationID;
 }
 
-RegisteredUser Notification::getUser() {
+RegisteredUser *Notification::getUser() {
     return user;
 }
 

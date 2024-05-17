@@ -11,4 +11,5 @@ class NewsLetterSubscriber {
         string getEmail();
         void setEmail(string newEmail);
         NewsLetterSubscriber(string email);
+        ~NewsLetterSubscriber();
 };

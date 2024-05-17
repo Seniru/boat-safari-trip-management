@@ -5,14 +5,14 @@
 
 class Ticket {
     private:
-        User user;
+        User *user;
         bool opened;
         string subject;
         string inquiryType;
         string message;
         string submittedDateTime;
     public:
-        User getUser();
+        User *getUser();
         bool getIsOpened();
         string getSubject();
         string getInquiryType();
@@ -23,6 +23,6 @@ class Ticket {
         void setInquiryType(string newInquiryType);
         void setSubmittedDateTime(string newDateTime);
         void displayInformation();
-        Ticket(const User pUser, string pSubject, string pInquiryType, string pMessage);
+        Ticket(User *pUser, string pSubject, string pInquiryType, string pMessage);
 
 };

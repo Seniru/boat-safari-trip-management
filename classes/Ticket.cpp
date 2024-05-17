@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Ticket::Ticket(const User pUser, string pSubject, string pInquiryType, string pMessage) : user (pUser) {
+Ticket::Ticket(User *pUser, string pSubject, string pInquiryType, string pMessage) : user (pUser) {
     subject = pSubject;
     inquiryType = pInquiryType;
     message = pMessage;
@@ -13,7 +13,7 @@ Ticket::Ticket(const User pUser, string pSubject, string pInquiryType, string pM
     cout << "Created a ticket instance!\n";
 }
 
-User Ticket::getUser() {
+User *Ticket::getUser() {
     return user;
 }
 
@@ -55,5 +55,5 @@ void Ticket::setSubmittedDateTime(string newDateTime) {
 
 void Ticket::displayInformation() {
     // ...
-    cout << "User: " << user.getID() << "\nType: " << inquiryType << "\n" << subject << "\n\n" << message << endl;
+    cout << "User: " << user->getID() << "\nType: " << inquiryType << "\n" << subject << "\n\n" << message << endl;
 }

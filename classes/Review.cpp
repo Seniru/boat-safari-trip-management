@@ -4,18 +4,22 @@
 
 using namespace std;
 
-Review::Review(int pReviewID, RegisteredUser pUser, string pReview, int pRating) : user (pUser) {
+Review::Review(int pReviewID, RegisteredUser *pUser, string pReview, int pRating) : user (pUser) {
     reviewID = pReviewID;
     review = pReview;
     rating = pRating;
     cout << "Created a review instance! [ID: " << reviewID << "]\n";
 }
 
+Review::~Review() {
+    cout << "Deleted review instance." << endl;
+}
+
 int Review::getReviewID() {
     return reviewID;
 }
 
-RegisteredUser Review::getUser() {
+RegisteredUser *Review::getUser() {
     return user;
 }
 
@@ -36,5 +40,5 @@ void Review::setRating(int newRating) {
 }
 
 void Review::displayReview() {
-    cout << "Review ID: " << reviewID << "\nUser ID: " << user.getID() << endl;
+    cout << "Review ID: " << reviewID << "\nUser ID: " << user->getID() << endl;
 }

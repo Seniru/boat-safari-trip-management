@@ -15,6 +15,7 @@ class Newsletter {
         void setTitle(string newTitle);
         void setContent(string newContent);
         void displayNewsletter();
-        void sendNewsletter(NewsLetterSubscriber subscriber);
+        void sendNewsletter(NewsLetterSubscriber *subscriber);
         Newsletter(string pTitle, string pContent);
+        ~Newsletter();
 };

@@ -8,14 +8,15 @@ using namespace std;
 class Notification {
     private:
         int notificationID;
-        RegisteredUser user;
+        RegisteredUser *user;
         string notification;
         bool read;
 
     public:
-        Notification(int pNotificationID, const RegisteredUser pUser, string pNotification);
+        Notification(int pNotificationID, RegisteredUser *pUser, string pNotification);
+        ~Notification();
         int getNotificationID();
-        RegisteredUser getUser();
+        RegisteredUser *getUser();
         string getNotification();
         bool getReadStatus();
         void readMessage();
