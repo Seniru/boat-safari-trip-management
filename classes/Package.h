@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Trip.h"
 class Package {
      private:
          int PackageID;
