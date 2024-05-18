@@ -14,7 +14,7 @@ class Package {
          string boatType;
      public:
          Package(int pid, string pName, float pPrice, string pFacilities, string pBoatType);
-         void setPackageDetails(string pName, float pPrice);
+         void setPackageDetails(int pid, string pName, float pPrice);
          void displayPackageDetails();
          ~Package();
 };
