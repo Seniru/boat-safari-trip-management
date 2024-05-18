@@ -7,14 +7,14 @@ using namespace std;
 
 class Package {
      private:
-         int PackageID;
-         string PackageName[20];
-         float PackagePrice;
-         string Facilities;
-         string BoatType;
+         int packageID;
+         string packageName;
+         float packagePrice;
+         string facilities;
+         string boatType;
      public:
          Package(int pid, string pName, float pPrice, string pFacilities, string pBoatType);
-         void setPackageDetails();
+         void setPackageDetails(string pName, float pPrice);
          void displayPackageDetails();
          ~Package();
 };
