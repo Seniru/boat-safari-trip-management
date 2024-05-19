@@ -3,11 +3,11 @@
 #include <iostream>
 #include "User.h"
 #include "Package.h"
-#include "Trip.h"
 
 using namespace std;
 
 class Ticket;
+class Trip;
 
 class RegisteredUser : public User {
     private:

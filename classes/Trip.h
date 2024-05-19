@@ -1,7 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include "RegisteredUser.h"
+#include "TripOption.h"
+
+class RegisteredUser;
 
 using namespace std;
 
@@ -10,28 +12,26 @@ class Trip {
         int id;
         string datetime;
         int passengersO12;
-        int passebgersU12;
+        int passengersU12;
         RegisteredUser *user;
-        Location Location;
-        Boat boat;
-        Facility Facility[];
+        Location *location;
+        Boat *boat;
+        Facility *facilities[10];
     public:
+        Trip(int pID, string pDateTime, int pPassengersO12, int pPassengersU12, RegisteredUser *pUser, Location *pLocation, Boat *pBoat);
         int getID();
-        string DateTime();
+        string getDateTime();
         int getPassengersO12();
         int getPassengersU12();
         RegisteredUser *getUser();
-        Location getlocation();
-        Boat getboat();
-        Facility *getfacilities();
+        Location *getlocation();
+        Boat *getboat();
+        Facility **getfacilities();
         float calculatePrice();
         void setDateTime(string newDateTime);
-        void setPassengerCount(int newPU12,int newPO12);
-        void setLocatin(Location *newlocation);
+        void setPassengerCount(int newPU12, int newPO12);
+        void setLocation(Location *newlocation);
         void setBoatType(Boat *newBoat);
         void addFacility(Facility *facility);
-        Trip()     
-
-
-
+        ~Trip();
 };
