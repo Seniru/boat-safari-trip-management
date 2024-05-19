@@ -11,6 +11,18 @@ RegisteredUser::~RegisteredUser() {
     cout << "Deleted registered user instance." << endl;
 }
 
+string RegisteredUser::getPhoneNumber() {
+    return phoneNumber;
+}
+
+string RegisteredUser::getEmail() {
+    return email;
+}
+
+Notification **RegisteredUser::getNotifications() {
+    return notifications;
+}
+
 void RegisteredUser::setPhoneNumber(string newPhoneNumber) {
     phoneNumber.assign(newPhoneNumber);
 }

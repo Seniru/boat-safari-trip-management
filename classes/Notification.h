@@ -1,7 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include "RegisteredUser.h"
+
+class RegisteredUser;
 
 using namespace std;
 

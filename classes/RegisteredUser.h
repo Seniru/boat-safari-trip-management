@@ -8,13 +8,21 @@ using namespace std;
 
 class Ticket;
 class Trip;
+class Notification;
 
 class RegisteredUser : public User {
     private:
         string phoneNumber;
         string email;
+        Trip *trips[256];
+        Ticket *tickets[256];
+        Notification *notifications[1024];
 
     public:
+        string getPhoneNumber();
+        string getEmail();
+        Notification **getNotifications();
+
         void setPhoneNumber(string newPhoneNumber);
         void setEmail(string newEmail);
         void displayDetails();
