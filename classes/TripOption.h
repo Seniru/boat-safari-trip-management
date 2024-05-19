@@ -11,10 +11,10 @@ class TripOption {
     public:
         TripOption(string pName, float pCost);
         ~TripOption();
-        string getName();
-        float getCost();
-        void setName(string newName);
-        void setCost(float newCost);
+        virtual string getName();
+        virtual float getCost();
+        virtual void setName(string newName);
+        virtual void setCost(float newCost);
 };
 
 class Boat : public TripOption {
@@ -24,6 +24,7 @@ class Boat : public TripOption {
 class Location : public TripOption {
     public: Location(string pName, float pCost) : TripOption(pName, pCost) {}
 };
+
 class Facility : public TripOption {
     public: Facility(string pName, float pCost) : TripOption(pName, pCost) {}
 };

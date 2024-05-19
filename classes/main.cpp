@@ -27,7 +27,7 @@ int main() {
     Package *package1 = new Package(1, string("Hawaiian treat"), (float) 30.0, boat1, location1);
     Trip *trip1 = new Trip(1, string("22/10/2023"), 1, 3, user1, location1, boat1);
     Ticket *ticket1 = new Ticket(user1, string("I have a complaint!"), string("complaint"), string("Provider1 scammed me."));
-    Review *review1 = new Review(1, user1, string("Good place!"), 4);
+    Review *review1 = new Review(1, user1, trip1, string("Good place!"), 4);
     Notification *notif1 = new Notification(1, user1, string("Provider1 accepted your trip!"));
 
     delete agent1;

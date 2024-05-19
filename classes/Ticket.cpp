@@ -48,6 +48,10 @@ void Ticket::setInquiryType(string newInquiryType) {
     inquiryType = newInquiryType;
 }
 
+void Ticket::setMessage(string newMessage) {
+    message = newMessage;
+}
+
 void Ticket::setSubmittedDateTime(string newDateTime) {
     submittedDateTime = newDateTime;
 }

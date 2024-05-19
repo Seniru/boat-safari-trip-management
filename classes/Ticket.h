@@ -24,6 +24,7 @@ class Ticket {
         void setOpened(bool pOpened);
         void setSubject(string newSubject);
         void setInquiryType(string newInquiryType);
+        void setMessage(string newMessage);
         void setSubmittedDateTime(string newDateTime);
         void displayInformation();
         Ticket(RegisteredUser *pUser, string pSubject, string pInquiryType, string pMessage);

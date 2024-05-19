@@ -1,10 +1,11 @@
 #include <iostream>
 #include "Review.h"
 #include "RegisteredUser.h"
+#include "Trip.h"
 
 using namespace std;
 
-Review::Review(int pReviewID, RegisteredUser *pUser, string pReview, int pRating) : user (pUser) {
+Review::Review(int pReviewID, RegisteredUser *pUser, Trip *pTrip, string pReview, int pRating) : user (pUser), trip (pTrip) {
     reviewID = pReviewID;
     review = pReview;
     rating = pRating;
@@ -21,6 +22,10 @@ int Review::getReviewID() {
 
 RegisteredUser *Review::getUser() {
     return user;
+}
+
+Trip *Review::getTrip() {
+    return trip;
 }
 
 string Review::getReview() {
